@@ -1,0 +1,32 @@
+<div class="card card-body bg-base-100 shadow-md emp-list p-3">
+  <div class="flex justify-between">
+    <div>
+      <h4 class="text-lg font-bold">Latest Employees</h4>
+      <span class="text-sm">You have 100 Employee</span>
+    </div>
+    <label for="emp-modal" class="btn btn-ghost rounded-full">
+      <fa-icon [icon]="faAdd"></fa-icon>
+    </label>
+  </div>
+
+  <div class="p-2" *ngFor="let emp of employees; index as idx">
+    <div class="flex items-center">
+      <div class="avatar mr-3">
+        <div class="w-8 rounded-full">
+          <img src="https://i.pravatar.cc/150?img={{ idx }}" />
+        </div>
+      </div>
+      <div class="flex-1">
+        <p class="font-semibold">{{ emp.firstName }} {{ emp.lastName }}</p>
+        <p class="text-sm">{{ emp.email }}</p>
+      </div>
+      <button class="btn btn-ghost rounded-full">
+        <fa-icon [icon]="faEllipsisV"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <button class="btn btn-outline">View All</button>
+</div>
+
+<app-employee-modal></app-employee-modal>

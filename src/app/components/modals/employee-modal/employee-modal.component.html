@@ -1,0 +1,56 @@
+<input type="checkbox" id="emp-modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-3">Add Employee</h3>
+    <!-- <p class="text-sm mb-3">Add a new employee to your account.</p> -->
+    <div class="flex gap-2 items-center justify-between mb-2">
+      <input
+        type="text"
+        id="firstName"
+        placeholder="First Name"
+        [(ngModel)]="employee.firstName"
+        class="input w-full max-w-xs input-bordered"
+      />
+      <input
+        type="text"
+        id="lastName"
+        [(ngModel)]="employee.lastName"
+        placeholder="Last Name"
+        class="input w-full max-w-xs input-bordered"
+      />
+    </div>
+    <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
+      <input
+        type="text"
+        placeholder="Email"
+        [(ngModel)]="employee.email"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+      <input
+        type="text"
+        placeholder="CIN"
+        [(ngModel)]="employee.cin"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+    </div>
+    <!-- Add age and salary inputs -->
+    <div class="flex gap-2 items-center justify-between mb-2">
+      <input
+        type="number"
+        [(ngModel)]="employee.age"
+        placeholder="Age"
+        class="input input-bordered w-full max-w-xs"
+      />
+      <input
+        type="number"
+        [(ngModel)]="employee.salary"
+        placeholder="Salary"
+        class="input input-bordered w-full max-w-xs"
+      />
+    </div>
+    <div class="modal-action">
+      <label for="emp-modal" class="btn btn-outline">Cancel</label>
+      <label for="emp-modal" (click)="saveEmployee()" class="btn">Save</label>
+    </div>
+  </div>
+</div>

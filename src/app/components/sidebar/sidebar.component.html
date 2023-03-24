@@ -1,0 +1,18 @@
+<div class="drawer drawer-mobile">
+  <input id="dash-sidebar" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Page content here -->
+    <!-- <label for="dash-sidebar" class="btn btn-primary drawer-button lg:hidden"
+      >Open drawer</label
+    > -->
+    <ng-content></ng-content>
+  </div>
+  <div class="drawer-side">
+    <label for="dash-sidebar" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+      <!-- Sidebar content here -->
+      <li><a>Sidebar Item 1</a></li>
+      <li><a>Sidebar Item 2</a></li>
+    </ul>
+  </div>
+</div>
