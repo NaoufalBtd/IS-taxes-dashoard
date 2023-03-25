@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Invoice } from 'src/app/controller/models/invoice.model';
+import { InvoiceService } from 'src/app/controller/services/invoice.service';
 
 @Component({
   selector: 'app-add-invoice',
@@ -6,8 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-invoice.component.css'],
 })
 export class AddInvoiceComponent {
-  public invoice = {
-    montantHt: 0,
-    montantTtc: 0,
-  };
+  public invoice: Invoice = new Invoice();
+  constructor(private invoiceService: InvoiceService) {}
+  saveInvoice() {
+    console.log('clicked');
+    this.invoiceService.addInvoice({ ...this.invoice });
+  }
 }

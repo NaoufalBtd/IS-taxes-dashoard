@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faAdd, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { EmployeeService } from 'src/app/controller/service/employee.service';
+import { EmployeeService } from 'src/app/controller/services/employee.service';
 @Component({
   selector: 'app-latest-emp-widget',
   templateUrl: './latest-emp-widget.component.html',

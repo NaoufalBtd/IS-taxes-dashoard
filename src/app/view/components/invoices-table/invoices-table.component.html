@@ -34,40 +34,24 @@
       </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-      <tr>
+      <tr *ngFor="let invoice of invoices">
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">1</div>
+          <div class="text-sm text-gray-900">{{invoice.id}}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <span class="badge badge-info">Gain</span>
+          <span class="badge" [ngClass]="{'badge' : true,'badge-success text-white': invoice.type === 'INCOME', 'badge-primary': invoice.type !== 'INCOME'}">{{invoice.type}}</span>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">100</div>
+          <div class="text-sm text-gray-900">{{invoice.montantHt}}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">120</div>
+          <div class="text-sm text-gray-900">{{invoice.montantTtc}}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">2022-03-24</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">2</div>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="badge badge-error">Loss</span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">200</div>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">240</div>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">2022-03-23</div>
+          <div class="text-sm text-gray-900">{{invoice.date}}</div>
         </td>
       </tr>
+
       <!-- More rows... -->
     </tbody>
   </table>

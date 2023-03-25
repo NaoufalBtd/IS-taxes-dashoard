@@ -15,6 +15,9 @@ import { TurnoverChartComponent } from './view/components/turnover-chart/turnove
 import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.component';
 import { AddInvoiceComponent } from './view/components/modals/add-invoice/add-invoice.component';
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
+import { NotificationWidgetComponent } from './view/components/notification-widget/notification-widget.component';
+import { IncomeCardComponent } from './view/components/income-card/income-card.component';
+import { ExpensesCardComponent } from './view/components/expenses-card/expenses-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.com
     InvoicesTableComponent,
     AddInvoiceComponent,
     DashboardIsComponent,
+    NotificationWidgetComponent,
+    IncomeCardComponent,
+    ExpensesCardComponent,
   ],
   imports: [BrowserModule, FontAwesomeModule, FormsModule, NgChartsModule],
   providers: [],

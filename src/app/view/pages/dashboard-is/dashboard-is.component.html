@@ -1,15 +1,27 @@
-<div class="bg-base-300 h-full min-h-screen">
+<div class="bg-white h-full min-h-screen">
   <app-sidebar>
     <app-navbar></app-navbar>
     <div class="container p-10">
-      <div class="w-full block">
-        <div class="w-3/4 block m-auto bg-slate-50 rounded-md shadow-md mb-10">
+      <div class="w-full flex gap-5">
+        <div class="w-2/3 block m-auto bg-slate-50 rounded-md shadow-md mb-10">
           <app-turnover-chart></app-turnover-chart>
         </div>
+<div class="w-1/3">
+<div class="mb-2">
+    <app-income-card />
+</div>
+  <app-expenses-card />
+</div>
       </div>
-      <div class="mb-3 w-2/3">
+      <div class="mb-3">
+      <div class=" w-2/3">
         <app-invoices-table></app-invoices-table>
       </div>
+      <div>
+        <app-notification-widget/>
+      </div>
+      </div>
+
     </div>
   </app-sidebar>
 </div>

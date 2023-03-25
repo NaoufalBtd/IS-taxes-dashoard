@@ -4,15 +4,21 @@
     <h3 class="font-bold text-lg mb-3">Add Invoice</h3>
     <!-- <p class="text-sm mb-3">Add a new employee to your account.</p> -->
     <div class="flex gap-2 items-center justify-between mb-2">
-      <select class="select select-warning w-full max-w-xs m-auto">
-        <option disabled selected>Choose Invoice Type</option>
-        <option>Gain</option>
-        <option>Loss</option>
+      <select
+        [(ngModel)]="invoice.type"
+        class="select select-warning w-full max-w-xs m-auto"
+      >
+        <option disabled selected [value]="'default'">
+          Choose Invoice Type
+        </option>
+        <option [value]="'EXPENSE'">EXPENSE</option>
+        <option [value]="'INCOME'">INCOME</option>
       </select>
     </div>
 
     <div class="mb-2">
       <input
+        [(ngModel)]="invoice.date"
         type="date"
         placeholder="Date"
         class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
@@ -37,7 +43,9 @@
     </div>
     <div class="modal-action">
       <label for="invoice-modal" class="btn btn-outline">Cancel</label>
-      <label for="invoice-modal" class="btn">Save</label>
+      <label for="invoice-modal" class="btn" (click)="saveInvoice()"
+        >Save</label
+      >
     </div>
   </div>
 </div>

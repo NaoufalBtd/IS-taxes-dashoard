@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { Invoice } from 'src/app/controller/models/invoice.model';
+import { InvoiceService } from 'src/app/controller/services/invoice.service';
 
 @Component({
   selector: 'app-turnover-chart',
   templateUrl: './turnover-chart.component.html',
   styleUrls: ['./turnover-chart.component.css'],
 })
-export class TurnoverChartComponent {
+export class TurnoverChartComponent implements OnInit {
+  incomeInvoice: Invoice[] = [];
+
+  constructor(private invoiceService: InvoiceService) {}
+  ngOnInit(): void {
+    this.incomeInvoice = this.invoiceService.getIncomeInvoice();
+    console.log(this.incomeInvoice);
+  }
+
   public chartOptions: ChartOptions<'line'> = {
     responsive: true,
     animation: {

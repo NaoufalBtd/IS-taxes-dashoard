@@ -1,0 +1,11 @@
+.icon_card {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  top: 24px;
+  right: 24px;
+  border-radius: 50%;
+  position: absolute;
+  color: rgb(200, 250, 205);
+  background-color: rgb(0, 123, 85);
+}
