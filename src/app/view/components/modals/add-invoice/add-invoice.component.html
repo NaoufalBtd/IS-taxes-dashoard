@@ -1,0 +1,43 @@
+<input type="checkbox" id="invoice-modal" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg mb-3">Add Invoice</h3>
+    <!-- <p class="text-sm mb-3">Add a new employee to your account.</p> -->
+    <div class="flex gap-2 items-center justify-between mb-2">
+      <select class="select select-warning w-full max-w-xs m-auto">
+        <option disabled selected>Choose Invoice Type</option>
+        <option>Gain</option>
+        <option>Loss</option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      <input
+        type="date"
+        placeholder="Date"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+    </div>
+    <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
+      <input
+        type="number"
+        placeholder="Montant HT"
+        [(ngModel)]="invoice.montantHt"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+    </div>
+    <!-- Add age and salary inputs -->
+    <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
+      <input
+        type="number"
+        placeholder="Montant TTC"
+        [(ngModel)]="invoice.montantTtc"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+    </div>
+    <div class="modal-action">
+      <label for="invoice-modal" class="btn btn-outline">Cancel</label>
+      <label for="invoice-modal" class="btn">Save</label>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,8 @@ import { NavbarComponent } from './view/components/navbar/navbar.component';
 import { SidebarComponent } from './view/components/sidebar/sidebar.component';
 import { TurnoverChartComponent } from './view/components/turnover-chart/turnover-chart.component';
 import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.component';
+import { AddInvoiceComponent } from './view/components/modals/add-invoice/add-invoice.component';
+import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.com
     TurnoverChartComponent,
     EmpTaxesTableComponent,
     InvoicesTableComponent,
+    AddInvoiceComponent,
+    DashboardIsComponent,
   ],
   imports: [BrowserModule, FontAwesomeModule, FormsModule, NgChartsModule],
   providers: [],
