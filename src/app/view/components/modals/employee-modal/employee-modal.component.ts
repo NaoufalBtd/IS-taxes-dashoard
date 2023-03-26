@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/controller/models/employee/employee.model';
-import { EmployeeService } from 'src/app/controller/services/employee.service';
+import { Employee } from 'src/app/utils/controller/models/employee/employee.model';
+import { EmployeeService } from 'src/app/utils/controller/services/employee.service';
 
 @Component({
   selector: 'app-employee-modal',

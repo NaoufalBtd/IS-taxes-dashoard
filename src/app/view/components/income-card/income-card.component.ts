@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InvoiceService } from 'src/app/controller/services/invoice.service';
+import { InvoiceService } from 'src/app/utils/controller/services/invoice.service';
 import { getTotalFromInvoices } from 'src/app/utils';
 
 @Component({

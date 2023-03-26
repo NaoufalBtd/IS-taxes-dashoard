@@ -1,7 +1,7 @@
 // get totalIncome from array of invoices for specific month
 
 import * as moment from 'moment';
-import { Invoice } from '../controller/models/invoice.model';
+import { Invoice } from './controller/models/invoice.model';
 
 export const getTotalFromInvoices = (invoices: Invoice[], date: Date) => {
   let total = 0;

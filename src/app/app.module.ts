@@ -18,6 +18,20 @@ import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.com
 import { NotificationWidgetComponent } from './view/components/notification-widget/notification-widget.component';
 import { IncomeCardComponent } from './view/components/income-card/income-card.component';
 import { ExpensesCardComponent } from './view/components/expenses-card/expenses-card.component';
+import { EmployeCreateComponent } from './view/employe/employe-create/employe-create.component';
+import { EmployeListComponent } from './view/employe/employe-list/employe-list.component';
+import { SocieteCreateComponent } from './view/societe/societe-create/societe-create.component';
+import { SocieteListComponent } from './view/societe/societe-list/societe-list.component';
+import { NotificationisCreateComponent } from './view/notificationis/notificationis-create/notificationis-create.component';
+import { NotificationisListComponent } from './view/notificationis/notificationis-list/notificationis-list.component';
+import { TauxirCreateComponent } from './view/tauxir/tauxir-create/tauxir-create.component';
+import { TauxirListComponent } from './view/tauxir/tauxir-list/tauxir-list.component';
+import { TauxisCreateComponent } from './view/tauxis/tauxis-create/tauxis-create.component';
+import { TauxisListComponent } from './view/tauxis/tauxis-list/tauxis-list.component';
+import { TaxeirCreateComponent } from './view/taxeir/taxeir-create/taxeir-create.component';
+import { TaxeirListComponent } from './view/taxeir/taxeir-list/taxeir-list.component';
+import { TaxeisCreateComponent } from './view/taxeis/taxeis-create/taxeis-create.component';
+import { TaxeisListComponent } from './view/taxeis/taxeis-list/taxeis-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +49,20 @@ import { ExpensesCardComponent } from './view/components/expenses-card/expenses-
     NotificationWidgetComponent,
     IncomeCardComponent,
     ExpensesCardComponent,
+    EmployeCreateComponent,
+    EmployeListComponent,
+    SocieteCreateComponent,
+    SocieteListComponent,
+    NotificationisCreateComponent,
+    NotificationisListComponent,
+    TauxirCreateComponent,
+    TauxirListComponent,
+    TauxisCreateComponent,
+    TauxisListComponent,
+    TaxeirCreateComponent,
+    TaxeirListComponent,
+    TaxeisCreateComponent,
+    TaxeisListComponent,
   ],
   imports: [BrowserModule, FontAwesomeModule, FormsModule, NgChartsModule],
   providers: [],
