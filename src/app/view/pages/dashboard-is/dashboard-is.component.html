@@ -1,27 +1,60 @@
-<div class="bg-white h-full min-h-screen">
-  <app-sidebar>
-    <app-navbar></app-navbar>
-    <div class="container p-10">
-      <div class="w-full flex gap-5">
-        <div class="w-2/3 block m-auto bg-slate-50 rounded-md shadow-md mb-10">
-          <app-turnover-chart></app-turnover-chart>
-        </div>
-<div class="w-1/3">
-<div class="mb-2">
-    <app-income-card />
-</div>
-  <app-expenses-card />
-</div>
-      </div>
-      <div class="mb-3">
-      <div class=" w-2/3">
-        <app-invoices-table></app-invoices-table>
-      </div>
-      <div>
-        <app-notification-widget/>
-      </div>
-      </div>
-
+<app-dashboard-layout>
+  <div class="w-full flex gap-5">
+    <div class="w-2/3 block m-auto bg-slate-50 rounded-md shadow-md mb-10">
+      <app-turnover-chart></app-turnover-chart>
     </div>
-  </app-sidebar>
-</div>
+    <div class="w-1/3">
+      <div class="mb-2">
+        <app-income-card></app-income-card>
+      </div>
+      <app-expenses-card></app-expenses-card>
+    </div>
+  </div>
+  <div class="mb-3 flex gap-3">
+    <div class="w-1/3">
+      <app-taxes-widget></app-taxes-widget>
+    </div>
+    <div
+      class="w-2/3 shadow-lg border-solid rounded-2xl p-2 border border-gray-100"
+    >
+      <div class="flex justify-between mb-4 p-3">
+        <h2 class="text-lg font-medium">Invoices</h2>
+        <label for="invoice-modal" class="btn btn-primary btn-sm"
+          >Add new invoice</label
+        >
+      </div>
+      <app-invoices-table></app-invoices-table>
+      <div class="divider"></div>
+      <div class="flex justify-end p-1">
+        <button class="btn btn-ghost btn-sm">
+          See all invoices
+          <span class="ml-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              role="img"
+              class="MuiBox-root css-1t9pz9x iconify iconify--eva"
+              width="1em"
+              height="1em"
+              viewBox="0 0 24 24"
+            >
+              <g id="iconifyReact60">
+                <g id="iconifyReact61">
+                  <path
+                    id="iconifyReact62"
+                    fill="currentColor"
+                    d="M10 19a1 1 0 0 1-.64-.23a1 1 0 0 1-.13-1.41L13.71 12L9.39 6.63a1 1 0 0 1 .15-1.41a1 1 0 0 1 1.46.15l4.83 6a1 1 0 0 1 0 1.27l-5 6A1 1 0 0 1 10 19Z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div>
+      <!-- <app-notification-widget></app-notification-widget> -->
+    </div>
+  </div>
+</app-dashboard-layout>

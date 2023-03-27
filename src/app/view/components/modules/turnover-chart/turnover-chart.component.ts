@@ -25,10 +25,10 @@ export class TurnoverChartComponent implements OnInit {
     },
     // maintainAspectRatio: false,
     elements: {
-      point: {
-        radius: 1,
-        hoverRadius: 4,
-      },
+      // point: {
+      //   radius: 1,
+      //   hoverRadius: 4,
+      // },
     },
     layout: {
       padding: 16,
@@ -36,7 +36,7 @@ export class TurnoverChartComponent implements OnInit {
     scales: {
       y: {
         stacked: true,
-        ticks: {},
+        // ticks: {},
         grid: {
           display: false,
         },
@@ -48,7 +48,7 @@ export class TurnoverChartComponent implements OnInit {
     },
     plugins: {
       legend: {
-        display: false,
+        display: true,
         position: 'top',
       },
       tooltip: {
@@ -88,11 +88,19 @@ export class TurnoverChartComponent implements OnInit {
     datasets: [
       {
         data: [65, 59, 80, 81, 56, 55, 40],
-        // label: 'Series A',
+        label: 'Income',
         fill: true,
         tension: 0.5,
         borderColor: 'rgb(13, 148, 136)',
         backgroundColor: 'rgba(13, 148, 136, 0.1)',
+      },
+      {
+        data: [28, 48, 40, 19, 86, 27, 90],
+        label: 'Expenses',
+        fill: true,
+        tension: 0.5,
+        borderColor: 'rgb(87, 13, 248)',
+        backgroundColor: 'rgba(87, 13, 248, 0.1)',
       },
     ],
   };

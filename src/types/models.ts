@@ -7,3 +7,16 @@ export type Employee = {
   age: string;
   salary: string;
 };
+
+export type Notification = {
+  id: string | undefined;
+  date: Date | undefined;
+  message: string | undefined;
+  severityLevel: NotificationSeverityLevel | undefined;
+};
+
+export enum NotificationSeverityLevel {
+  info = 'info',
+  warning = 'warning',
+  danger = 'danger',
+}
