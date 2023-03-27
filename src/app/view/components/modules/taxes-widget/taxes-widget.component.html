@@ -1,8 +1,58 @@
 <div class="card border p-4 h-full border-gray-50 shadow-md">
-  <div class="card-title">Taxes To be Paid</div>
-  <div class="card-body flex items-center justify-center">
-    <div class="flex flex-col items-center justify-center">
+  <div class="card-title"><span>Taxes To be Paid</span></div>
+  <div class="p-2 h-full flex-col flex items-end justify-center">
+    <!-- <div class="flex flex-col items-center justify-center">
       You do not have any taxes to be paid
+    </div> -->
+    <div class="carousel w-full">
+      <div id="item1" class="carousel-item block w-full">
+        <div class="flex flex-col border border-gray-100 p-3 rounded-2xl">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/10149/10149878.png"
+            class="w-14 h-14 block m-auto mb-3"
+            alt=""
+          />
+          <div class="flex">
+            <span class="w-1/2 font-bold">Id: </span>
+            <span>1</span>
+          </div>
+          <div class="flex">
+            <span class="w-1/2 font-bold">Amount: </span>
+            <span>1000</span>
+          </div>
+          <div class="flex">
+            <span class="w-1/2 font-bold">Due Date: </span>
+            <span>2021-12-12</span>
+          </div>
+          <div class="flex">
+            <span class="w-1/2 font-bold">Payment Status: </span>
+            <span>Not Paid</span>
+          </div>
+          <button class="btn btn-primary w-full mt-3">Pay Now</button>
+        </div>
+      </div>
+      <div id="item2" class="carousel-item w-full">
+        <div class="flex flex-col items-center justify-center">
+          You do not have any taxes to be paid
+        </div>
+      </div>
+      <div id="item3" class="carousel-item w-full">
+        <div class="flex flex-col items-center justify-center">
+          You do not have any taxes to be paid
+        </div>
+      </div>
+      <div id="item4" class="carousel-item w-full">
+        <div class="flex flex-col items-center justify-center">
+          You do not have any taxes to be paid
+        </div>
+      </div>
+    </div>
+    <div class="flex-1"></div>
+    <div class="flex justify-center w-full py-2 gap-2">
+      <a href="#item1" class="btn btn-xs">1</a>
+      <a href="#item2" class="btn btn-xs">2</a>
+      <a href="#item3" class="btn btn-xs">3</a>
+      <a href="#item4" class="btn btn-xs">4</a>
     </div>
   </div>
 </div>

@@ -27,6 +27,7 @@ import { TaxesWidgetComponent } from './view/components/modules/taxes-widget/tax
 import { TurnoverChartComponent } from './view/components/modules/turnover-chart/turnover-chart.component';
 import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.component';
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
+import { LoginComponent } from './view/pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.com
     LastTaxWidgetComponent,
     TaxesWidgetComponent,
     DashboardLayoutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
