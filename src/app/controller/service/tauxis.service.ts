@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Tauxir} from "../model/tauxir.model";
 import {Tauxis} from "../model/tauxis.model";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Employe} from "../model/employe.model";
 
 @Injectable({
   providedIn: 'root'
