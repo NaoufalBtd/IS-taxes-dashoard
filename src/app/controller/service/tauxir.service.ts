@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Notificationis} from "../model/notificationis.model";
 import {Tauxir} from "../model/tauxir.model";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Employe} from "../model/employe.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,15 @@ export class TauxirService {
   constructor(private _http: HttpClient) {
   }
 
-
+  public findAll():Observable<Array<Tauxir>>{
+    return this._http.get<Array<Tauxir>>(this.url);
+  }
+  public  findBySalaireMaxAndSalaireMin(salaireNet: number): Observable<Tauxir>{
+    return this._http.get<Tauxir>(this.url+'salaireNet/'+salaireNet);
+  }
+  public  saveTauxTaxeIR(tauxtaxeIR: Tauxir): Observable<number>{
+    return this._http.post<number>(this.url, tauxtaxeIR);
+  }
   get tauxir(): Tauxir {
     if (this._tauxir==null){
       this._tauxir=new Tauxir();

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {Tauxis} from "../model/tauxis.model";
 import {Taxeir} from "../model/taxeir.model";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Societe} from "../model/societe.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,22 @@ export class TaxeirService {
   private _taxeirs!: Array<Taxeir>;
   private _url = "http://localhost:8036/api/v1/taxeIr/";
   constructor(private _http: HttpClient) { }
+  public findAll():Observable<Array<Taxeir>>{
+    return this._http.get<Array<Taxeir>>(this.url);
+  }
+  public save(taxeir: Taxeir):Observable<Taxeir>{
+    return this._http.post<Taxeir>(this.url , taxeir);
+  }
+  public  findByMoisAndAnneeAndSocieteIce(mois: number, annee: number, ice: number ): Observable<Taxeir>{
+    return this._http.get<Taxeir>(this.url+'mois/'+mois+'annee/'+annee+'ice/'+ice);
+  }
+  public  deleteByMoisAndAnneeAndSocieteIce(mois: number, annee: number, ice: number): Observable<number>{
+    return this._http.delete<number>(this.url+'mois/'+mois+'annee/'+annee+'ice/'+ice);
+  }
+  public  updateTaxeIR(taxeir: Taxeir): Observable<number>{
+    return this._http.put<number>(this.url,taxeir);
+  }
+
 
   get taxeir(): Taxeir {
     if (this._taxeir==null){

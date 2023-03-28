@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Employe} from "../model/employe.model";
 import {Societe} from "../model/societe.model";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,18 @@ export class SocieteService {
   private _societes!: Array<Societe>;
   private _url = "http://localhost:8036/api/v1/societe/";
   constructor(private _http:HttpClient) { }
-
+  public findAll():Observable<Array<Societe>>{
+    return this._http.get<Array<Societe>>(this.url);
+  }
+  public  deleteByIce(ice: string): Observable<number>{
+    return this._http.delete<number>(this.url+'ice/'+ice);
+  }
+  public  findByIce(ice: string): Observable<Societe>{
+    return this._http.get<Societe>(this.url+'ice/'+ice);
+  }
+  public findByLibelle(libelle: string):Observable<Array<Societe>>{
+    return this._http.get<Array<Societe>>(this.url+'libelle/'+libelle);
+  }
 
   get societe(): Societe {
     if (this._societe==null){
