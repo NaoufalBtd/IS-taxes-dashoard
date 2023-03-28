@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router'; // CLI imports router
 import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.component';
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 import { LoginComponent } from './view/pages/login/login.component';
+import { ProfileComponent } from './view/pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ]; // sets up routes constant where you define your routes
 

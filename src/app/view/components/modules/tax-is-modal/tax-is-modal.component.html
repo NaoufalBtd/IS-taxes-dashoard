@@ -1,0 +1,207 @@
+<input type="checkbox" id="taxeis-modal" class="modal-toggle" />
+<div class="modal">
+  <div
+    class="modal-box scrollbar scrollbar-thumb-gray-900 max-w-3xl scrollbar-thin scrollbar-thumb-slate-500"
+  >
+    <div class="relative flex flex-col min-w-0 mt-6 break-words">
+      <div
+        class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent"
+      >
+        <div class="flex flex-wrap -mx-3">
+          <div class="flex items-center flex-none w-1/2 max-w-full px-3">
+            <h6 class="mb-0 dark:text-white">Payment Method</h6>
+          </div>
+          <div class="flex-none w-1/2 max-w-full px-3 text-right">
+            <a
+              class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25"
+              href="javascript:;"
+            >
+              <i class="fas fa-plus"> </i>&nbsp;&nbsp;Add New Card</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="flex-auto p-4">
+        <div class="flex flex-wrap -mx-3">
+          <div class="max-w-full px-3 mb-6 md:mb-0 md:w-1/2 md:flex-none">
+            <div
+              class="relative flex flex-row items-center flex-auto min-w-0 p-6 break-words bg-transparent border border-solid shadow-none md-max:overflow-auto rounded-xl border-slate-100 dark:border-slate-700 bg-clip-border"
+            >
+              <img
+                class="mb-0 mr-4 w-2/12"
+                src="https://demos.creative-tim.com/argon-dashboard-tailwind/assets/img/logos/mastercard.png"
+                alt="logo"
+              />
+              <h6 class="mb-0 dark:text-white">
+                ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
+              </h6>
+              <i
+                class="ml-auto cursor-pointer fas fa-pencil-alt text-slate-700"
+                data-target="tooltip_trigger"
+                data-placement="top"
+              ></i>
+              <div
+                data-target="tooltip"
+                class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg"
+              >
+                Edit Card
+                <div
+                  class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']"
+                  data-popper-arrow
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="max-w-full px-3 md:w-1/2 md:flex-none">
+            <div
+              class="relative flex flex-row items-center flex-auto min-w-0 p-6 break-words bg-transparent border border-solid shadow-none md-max:overflow-auto rounded-xl border-slate-100 dark:border-slate-700 bg-clip-border"
+            >
+              <img
+                class="mb-0 mr-4 w-2/12"
+                src="https://demos.creative-tim.com/argon-dashboard-tailwind/assets/img/logos/visa.png"
+                alt="logo"
+              />
+              <h6 class="mb-0 dark:text-white">
+                ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;5248
+              </h6>
+              <i
+                class="ml-auto cursor-pointer fas fa-pencil-alt text-slate-700"
+                data-target="tooltip_trigger"
+                data-placement="top"
+              ></i>
+              <div
+                data-target="tooltip"
+                class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg"
+              >
+                Edit Card
+                <div
+                  class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']"
+                  data-popper-arrow
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <!-- Add invoice -->
+    <h3 class="font-bold text-lg mb-3">Invoices List</h3>
+    <!-- <p class="text-sm mb-3">Add a new employee to your account.</p> -->
+    <div class="flex justify-center pb-5">
+      <button class="btn">Add New Invoice</button>
+    </div>
+    <!-- <div class="md:flex md:gap-2 items-center justify-between mb-2">
+      <select
+        [(ngModel)]="invoice.type"
+        class="select select-warning w-full max-w-xs m-auto"
+      >
+        <option disabled selected [value]="'default'">
+          Choose Invoice Type
+        </option>
+        <option [value]="'EXPENSE'">EXPENSE</option>
+        <option [value]="'INCOME'">INCOME</option>
+      </select>
+      <input
+        [(ngModel)]="invoice.date"
+        type="date"
+        placeholder="Date"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+    </div>
+
+    <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
+      <input
+        type="number"
+        placeholder="Montant HT"
+        [(ngModel)]="invoice.montantHt"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+      <input
+        type="number"
+        placeholder="Montant TTC"
+        [(ngModel)]="invoice.montantTtc"
+        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+      />
+    </div>
+
+    <div class="modal-action mb-3">
+      <label for="invoice-modal" class="btn btn-outline btn-sm">Cancel</label>
+      <label for="invoice-modal" class="btn btn-sm" (click)="saveInvoice()"
+        >Save</label
+      >
+    </div> -->
+    <!-- List of invoices -->
+    <div
+      class="flex-auto bg-slate-50 p-4 pt-6 border border-gray200 rounded-md max-h-72 overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 scrollbar-rounded-xl scrollbar-w-2 scrollbar-thin"
+    >
+      <ul class="flex flex-col pl-0 mb-0 rounded-lg">
+        <li
+          *ngFor="let invoice of invoices"
+          class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-white dark:bg-slate-850 shadow-md"
+        >
+          <div class="flex flex-col">
+            <h6 class="mb-4 text-sm leading-normal dark:text-white">
+              Oliver Liam
+            </h6>
+            <span class="mb-2 text-xs leading-tight dark:text-white/80"
+              >Company Name:
+              <span class="font-semibold text-slate-700 dark:text-white sm:ml-2"
+                >Fstg Marrakech</span
+              ></span
+            >
+            <span class="mb-2 text-xs leading-tight dark:text-white/80"
+              >Montant TTC:
+              <span
+                class="font-semibold text-slate-700 dark:text-white sm:ml-2"
+                >{{ invoice.montantTtc }}</span
+              ></span
+            >
+            <span class="text-xs mb-2 leading-tight dark:text-white/80"
+              >Montant HT:
+              <span
+                class="font-semibold text-slate-700 dark:text-white sm:ml-2"
+                >{{ invoice.montantHt }}</span
+              ></span
+            >
+            <span class="text-xs leading-tight dark:text-white/80"
+              >Invoice Type:
+              <span
+                class="badge"
+                [ngClass]="{
+                  badge: true,
+                  'badge-success text-white': invoice.type === 'INCOME',
+                  'badge-primary': invoice.type !== 'INCOME'
+                }"
+                >{{ invoice.type }}</span
+              >
+            </span>
+          </div>
+          <div class="ml-auto text-right">
+            <a
+              class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-transparent align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-sm ease-in bg-150 bg-gradient-to-tl from-red-600 to-orange-600 hover:-translate-y-px active:opacity-85 bg-x-25 bg-clip-text"
+              href="javascript:;"
+              ><i
+                class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-orange-600 bg-x-25 bg-clip-text"
+              ></i
+              >Delete</a
+            >
+            <a
+              class="inline-block dark:text-white px-4 py-2.5 mb-0 font-bold text-center align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer leading-normal text-sm ease-in bg-150 hover:-translate-y-px active:opacity-85 bg-x-25 text-slate-700"
+              href="javascript:;"
+              ><i
+                class="mr-2 fas fa-pencil-alt text-slate-700"
+                aria-hidden="true"
+              ></i
+              >Edit</a
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- Action Button -->
+    <div class="modal-action">
+      <label for="taxeis-modal" class="btn btn-primary">Declare!</label>
+    </div>
+  </div>
+</div>
