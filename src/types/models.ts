@@ -1,7 +1,7 @@
 export type Employee = {
   id: string;
-  firstName: string;
-  lastName: string;
+  prenom: string;
+  nom: string;
   cin: string;
   email: string;
   age: string;

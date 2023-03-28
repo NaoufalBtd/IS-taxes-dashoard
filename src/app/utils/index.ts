@@ -3,6 +3,7 @@
 import * as moment from 'moment';
 import { NotificationSeverityLevel } from 'src/types/models';
 import { Invoice } from '../controller/models/invoice.model';
+import IrTax from '../controller/models/IrTax.model';
 import { NotificationIs } from '../controller/models/notifications.model';
 
 export const getTotalFromInvoices = (invoices: Invoice[], date: Date) => {
@@ -62,6 +63,18 @@ export const getAlertNotification = (data: NotificationIs[]) => {
       id: notification.id,
       message,
       severityLevel,
+    };
+  });
+};
+
+export const formatIrTaxes = (data: IrTax[]) => {
+  return data.map((tax) => {
+    return {
+      id: tax.id,
+      amount: tax.amount,
+      date: moment(tax.year + '-' + tax.month, 'YYYY-MMMM').format(
+        'MMM, DD, YYYY'
+      ),
     };
   });
 };

@@ -11,9 +11,26 @@
     <label for="dash-sidebar" class="drawer-overlay"></label>
 
     <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+      <div
+        class="p-5 rounded-2xl bg-slate-300 bg-opacity-40 flex w-5/6 m-auto my-3 items-center"
+      >
+        <div class="avatar">
+          <div
+            class="w-12 h-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+          >
+            <img src="https://i.pravatar.cc/150?img=11" />
+          </div>
+        </div>
+        <div class="ml-5 w-3/5">
+          <h3 class="text-md font-bold truncate">Naoufal Boutadarhart</h3>
+          <p class="text-gray-500">admin</p>
+        </div>
+      </div>
       <!-- Sidebar content here -->
-      <li><a class="active">Dashboard</a></li>
-      <!-- <li><a>Sidebar Item 2</a></li> -->
+      <li><a routerLink="/home" routerLinkActive="active">Dashboard</a></li>
+      <li><a routerLink="/employee" routerLinkActive="active">Employees</a></li>
+      <li><a routerLink="/settings" routerLinkActive="active">Settings</a></li>
+      <li><a routerLink="/logout" routerLinkActive="active">Logout</a></li>
     </ul>
   </div>
 </div>

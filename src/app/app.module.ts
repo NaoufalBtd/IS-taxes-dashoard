@@ -15,6 +15,7 @@ import { EmpTaxesTableComponent } from './view/components/modules/emp-taxes-tabl
 import { ExpensesCardComponent } from './view/components/modules/expenses-card/expenses-card.component';
 import { IncomeCardComponent } from './view/components/modules/income-card/income-card.component';
 import { InvoicesTableComponent } from './view/components/modules/invoices-table/invoices-table.component';
+import { IrTaxesWidgetsComponent } from './view/components/modules/ir-taxes-widgets/ir-taxes-widgets.component';
 import { LastTaxWidgetComponent } from './view/components/modules/last-tax-widget/last-tax-widget.component';
 import { LatestEmpWidgetComponent } from './view/components/modules/latest-emp-widget/latest-emp-widget.component';
 import { AddInvoiceComponent } from './view/components/modules/modals/add-invoice/add-invoice.component';
@@ -28,6 +29,7 @@ import { TurnoverChartComponent } from './view/components/modules/turnover-chart
 import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.component';
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 import { LoginComponent } from './view/pages/login/login.component';
+import { EmpsTableComponent } from './view/components/modules/emps-table/emps-table.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { LoginComponent } from './view/pages/login/login.component';
     TaxesWidgetComponent,
     DashboardLayoutComponent,
     LoginComponent,
+    IrTaxesWidgetsComponent,
+    EmpsTableComponent,
   ],
   imports: [
     BrowserModule,

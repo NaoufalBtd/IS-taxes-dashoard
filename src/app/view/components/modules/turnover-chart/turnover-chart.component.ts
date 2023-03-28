@@ -38,7 +38,38 @@ export class TurnoverChartComponent implements OnInit {
         stacked: true,
         // ticks: {},
         grid: {
+          display: true,
+          drawOnChartArea: true,
+          drawTicks: false,
+        },
+        ticks: {
+          display: true,
+          padding: 10,
+          color: '#fbfbfb',
+          font: {
+            size: 11,
+            family: 'Open Sans',
+            style: 'normal',
+            lineHeight: 2,
+          },
+        },
+      },
+      x: {
+        grid: {
           display: false,
+          drawOnChartArea: false,
+          drawTicks: false,
+        },
+        ticks: {
+          display: true,
+          color: '#ccc',
+          padding: 20,
+          font: {
+            size: 11,
+            family: 'Open Sans',
+            style: 'normal',
+            lineHeight: 2,
+          },
         },
       },
     },

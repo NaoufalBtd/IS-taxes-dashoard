@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/controller/models/employee/employee.model';
+import { Employee } from 'src/app/controller/models/employee.model';
 import { EmployeeService } from 'src/app/controller/services/employee.service';
 
 @Component({
@@ -20,9 +20,7 @@ export class EmployeeModalComponent implements OnInit {
   }
 
   saveEmployee() {
-    console.log(
-      'saveEmployee() called' + JSON.stringify(this.employee.firstName)
-    );
+    console.log('saveEmployee() called' + JSON.stringify(this.employee.prenom));
     this.empService.saveEmployee(this.employee);
   }
 }

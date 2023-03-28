@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Employee } from '../models/employee/employee.model';
+import { Employee } from '../models/employee.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +8,8 @@ export class EmployeeService {
   private _employees: Employee[] = [
     {
       id: '1',
-      firstName: 'Alice',
-      lastName: 'Smith',
+      prenom: 'Alice',
+      nom: 'Smith',
       cin: 'AA123456',
       email: 'alice.smith@example.com',
       age: '25',
@@ -17,8 +17,8 @@ export class EmployeeService {
     },
     {
       id: '2',
-      firstName: 'Bob',
-      lastName: 'Jones',
+      prenom: 'Bob',
+      nom: 'Jones',
       cin: 'BB234567',
       email: 'bob.jones@example.com',
       age: '30',
@@ -26,8 +26,8 @@ export class EmployeeService {
     },
     {
       id: '3',
-      firstName: 'Charlie',
-      lastName: 'Brown',
+      prenom: 'Charlie',
+      nom: 'Brown',
       cin: 'CC345678',
       email: 'charlie.brown@example.com',
       age: '35',
@@ -35,8 +35,8 @@ export class EmployeeService {
     },
     {
       id: '4',
-      firstName: 'David',
-      lastName: 'Green',
+      prenom: 'David',
+      nom: 'Green',
       cin: 'DD456789',
       email: 'david.green@example.com',
       age: '40',
@@ -44,8 +44,8 @@ export class EmployeeService {
     },
     {
       id: '5',
-      firstName: 'Eve',
-      lastName: 'White',
+      prenom: 'Eve',
+      nom: 'White',
       cin: 'EE567890',
       email: 'eve.white@example.com',
       age: '45',
@@ -53,8 +53,8 @@ export class EmployeeService {
     },
     {
       id: '6',
-      firstName: 'Frank',
-      lastName: 'Black',
+      prenom: 'Frank',
+      nom: 'Black',
       cin: 'FF678901',
       email: 'frank.black@example.com',
       age: '50',
@@ -62,8 +62,8 @@ export class EmployeeService {
     },
     {
       id: '7',
-      firstName: 'Grace',
-      lastName: 'Lee',
+      prenom: 'Grace',
+      nom: 'Lee',
       cin: 'GG789012',
       email: 'grace.lee@example.com',
       age: '55',
@@ -71,8 +71,8 @@ export class EmployeeService {
     },
     {
       id: '8',
-      firstName: 'Harry',
-      lastName: 'Potter',
+      prenom: 'Harry',
+      nom: 'Potter',
       cin: 'HH890123',
       email: 'harry.potter@example.com',
       age: '60',
@@ -80,8 +80,8 @@ export class EmployeeService {
     },
     {
       id: '9',
-      firstName: 'Iris',
-      lastName: 'Wang',
+      prenom: 'Iris',
+      nom: 'Wang',
       cin: 'II901234',
       email: 'iris.wang@example.com',
       age: '65',
@@ -89,8 +89,8 @@ export class EmployeeService {
     },
     {
       id: '10',
-      firstName: 'Jack',
-      lastName: 'Chen',
+      prenom: 'Jack',
+      nom: 'Chen',
       cin: 'JJ012345',
       email: 'jack.chen@example.com',
       age: '70',
