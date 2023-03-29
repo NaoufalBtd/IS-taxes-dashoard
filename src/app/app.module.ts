@@ -32,6 +32,8 @@ import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.com
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 import { LoginComponent } from './view/pages/login/login.component';
 import { ProfileComponent } from './view/pages/profile/profile.component';
+import { BannerComponent } from './view/components/modules/banner/banner.component';
+import { EmpsCardComponent } from './view/components/modules/emps-card/emps-card.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { ProfileComponent } from './view/pages/profile/profile.component';
     EmpsTableComponent,
     TaxIsModalComponent,
     ProfileComponent,
+    BannerComponent,
+    EmpsCardComponent,
   ],
   imports: [
     BrowserModule,

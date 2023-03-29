@@ -13,7 +13,7 @@ export class EmployeeService {
       cin: 'AA123456',
       email: 'alice.smith@example.com',
       age: '25',
-      salary: '3000',
+      salaire: '3000',
     },
     {
       id: '2',
@@ -22,7 +22,7 @@ export class EmployeeService {
       cin: 'BB234567',
       email: 'bob.jones@example.com',
       age: '30',
-      salary: '4000',
+      salaire: '4000',
     },
     {
       id: '3',
@@ -31,7 +31,7 @@ export class EmployeeService {
       cin: 'CC345678',
       email: 'charlie.brown@example.com',
       age: '35',
-      salary: '5000',
+      salaire: '5000',
     },
     {
       id: '4',
@@ -40,7 +40,7 @@ export class EmployeeService {
       cin: 'DD456789',
       email: 'david.green@example.com',
       age: '40',
-      salary: '6000',
+      salaire: '6000',
     },
     {
       id: '5',
@@ -49,7 +49,7 @@ export class EmployeeService {
       cin: 'EE567890',
       email: 'eve.white@example.com',
       age: '45',
-      salary: '7000',
+      salaire: '7000',
     },
     {
       id: '6',
@@ -58,7 +58,7 @@ export class EmployeeService {
       cin: 'FF678901',
       email: 'frank.black@example.com',
       age: '50',
-      salary: '8000',
+      salaire: '8000',
     },
     {
       id: '7',
@@ -67,7 +67,7 @@ export class EmployeeService {
       cin: 'GG789012',
       email: 'grace.lee@example.com',
       age: '55',
-      salary: '9000',
+      salaire: '9000',
     },
     {
       id: '8',
@@ -76,7 +76,7 @@ export class EmployeeService {
       cin: 'HH890123',
       email: 'harry.potter@example.com',
       age: '60',
-      salary: '10000',
+      salaire: '10000',
     },
     {
       id: '9',
@@ -85,7 +85,7 @@ export class EmployeeService {
       cin: 'II901234',
       email: 'iris.wang@example.com',
       age: '65',
-      salary: '11000',
+      salaire: '11000',
     },
     {
       id: '10',
@@ -94,7 +94,7 @@ export class EmployeeService {
       cin: 'JJ012345',
       email: 'jack.chen@example.com',
       age: '70',
-      salary: '12000',
+      salaire: '12000',
     },
   ];
   private _employee!: Employee;

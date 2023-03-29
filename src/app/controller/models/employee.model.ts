@@ -5,5 +5,5 @@ export class Employee {
   public cin: string | undefined;
   public email: string | undefined;
   public age: string | undefined;
-  public salary: string | undefined;
+  public salaire: string | undefined;
 }

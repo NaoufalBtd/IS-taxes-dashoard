@@ -89,7 +89,7 @@
     <h3 class="font-bold text-lg mb-3">Invoices List</h3>
     <!-- <p class="text-sm mb-3">Add a new employee to your account.</p> -->
     <div class="flex justify-center pb-5">
-      <button class="btn">Add New Invoice</button>
+      <label for="invoice-modal" class="btn">Add New Invoice</label>
     </div>
     <!-- <div class="md:flex md:gap-2 items-center justify-between mb-2">
       <select
@@ -142,12 +142,13 @@
         >
           <div class="flex flex-col">
             <h6 class="mb-4 text-sm leading-normal dark:text-white">
-              Oliver Liam
+              FSTG Marrakech
             </h6>
             <span class="mb-2 text-xs leading-tight dark:text-white/80"
-              >Company Name:
-              <span class="font-semibold text-slate-700 dark:text-white sm:ml-2"
-                >Fstg Marrakech</span
+              >Invoice Date:
+              <span
+                class="font-semibold text-slate-700 dark:text-white sm:ml-2"
+                >{{ invoice.date }}</span
               ></span
             >
             <span class="mb-2 text-xs leading-tight dark:text-white/80"
@@ -201,6 +202,7 @@
     </div>
     <!-- Action Button -->
     <div class="modal-action">
+      <label for="taxeis-modal" class="btn btn-outline">Cancel</label>
       <label for="taxeis-modal" class="btn btn-primary">Declare!</label>
     </div>
   </div>
