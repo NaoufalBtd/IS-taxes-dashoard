@@ -1,0 +1,1 @@
+- Change the undefined in models and add a constructor with default value in assignment

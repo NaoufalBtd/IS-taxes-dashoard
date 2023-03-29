@@ -8,19 +8,18 @@ import { EmployeeService } from 'src/app/controller/services/employee.service';
   styleUrls: ['./employee-modal.component.css'],
 })
 export class EmployeeModalComponent implements OnInit {
+  private _employee: Employee = new Employee();
   constructor(private empService: EmployeeService) {}
 
   ngOnInit(): void {}
   get employee() {
-    return this.empService.employee;
-  }
-
-  set employee(employee: Employee) {
-    this.empService.employee = employee;
+    return this._employee;
   }
 
   saveEmployee() {
     console.log('saveEmployee() called' + JSON.stringify(this.employee.prenom));
-    this.empService.saveEmployee(this.employee);
+    this.empService.addEmployee(this.employee);
+    // this.empService.AddEmployee(this.employee);
+    // this.empService.saveEmployee(this.employee);
   }
 }

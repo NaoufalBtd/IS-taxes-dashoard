@@ -6,12 +6,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { DashboardLayoutComponent } from './view/components/layouts/dashboard-layout/dashboard-layout.component';
+import { BannerComponent } from './view/components/modules/banner/banner.component';
 import { EmpTaxesTableComponent } from './view/components/modules/emp-taxes-table/emp-taxes-table.component';
+import { EmpsCardComponent } from './view/components/modules/emps-card/emps-card.component';
 import { EmpsTableComponent } from './view/components/modules/emps-table/emps-table.component';
 import { ExpensesCardComponent } from './view/components/modules/expenses-card/expenses-card.component';
 import { IncomeCardComponent } from './view/components/modules/income-card/income-card.component';
@@ -32,8 +35,6 @@ import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.com
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 import { LoginComponent } from './view/pages/login/login.component';
 import { ProfileComponent } from './view/pages/profile/profile.component';
-import { BannerComponent } from './view/components/modules/banner/banner.component';
-import { EmpsCardComponent } from './view/components/modules/emps-card/emps-card.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { EmpsCardComponent } from './view/components/modules/emps-card/emps-card
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FontAwesomeModule,
     FormsModule,
     NgChartsModule,

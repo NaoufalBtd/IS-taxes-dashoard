@@ -1,130 +1,77 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Employee } from '../models/employee.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private _employees: Employee[] = [
-    {
-      id: '1',
-      prenom: 'Alice',
-      nom: 'Smith',
-      cin: 'AA123456',
-      email: 'alice.smith@example.com',
-      age: '25',
-      salaire: '3000',
-    },
-    {
-      id: '2',
-      prenom: 'Bob',
-      nom: 'Jones',
-      cin: 'BB234567',
-      email: 'bob.jones@example.com',
-      age: '30',
-      salaire: '4000',
-    },
-    {
-      id: '3',
-      prenom: 'Charlie',
-      nom: 'Brown',
-      cin: 'CC345678',
-      email: 'charlie.brown@example.com',
-      age: '35',
-      salaire: '5000',
-    },
-    {
-      id: '4',
-      prenom: 'David',
-      nom: 'Green',
-      cin: 'DD456789',
-      email: 'david.green@example.com',
-      age: '40',
-      salaire: '6000',
-    },
-    {
-      id: '5',
-      prenom: 'Eve',
-      nom: 'White',
-      cin: 'EE567890',
-      email: 'eve.white@example.com',
-      age: '45',
-      salaire: '7000',
-    },
-    {
-      id: '6',
-      prenom: 'Frank',
-      nom: 'Black',
-      cin: 'FF678901',
-      email: 'frank.black@example.com',
-      age: '50',
-      salaire: '8000',
-    },
-    {
-      id: '7',
-      prenom: 'Grace',
-      nom: 'Lee',
-      cin: 'GG789012',
-      email: 'grace.lee@example.com',
-      age: '55',
-      salaire: '9000',
-    },
-    {
-      id: '8',
-      prenom: 'Harry',
-      nom: 'Potter',
-      cin: 'HH890123',
-      email: 'harry.potter@example.com',
-      age: '60',
-      salaire: '10000',
-    },
-    {
-      id: '9',
-      prenom: 'Iris',
-      nom: 'Wang',
-      cin: 'II901234',
-      email: 'iris.wang@example.com',
-      age: '65',
-      salaire: '11000',
-    },
-    {
-      id: '10',
-      prenom: 'Jack',
-      nom: 'Chen',
-      cin: 'JJ012345',
-      email: 'jack.chen@example.com',
-      age: '70',
-      salaire: '12000',
-    },
-  ];
-  private _employee!: Employee;
+  private baseUrl = 'http://localhost:8036/api/v1/employe/'; // replace with your backend URL
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
 
-  constructor() {}
+  private employeesSubject = new BehaviorSubject<Employee[]>([]);
+  _employees$: Observable<Employee[]> = this.employeesSubject.asObservable();
 
-  getEmployees(): Employee[] {
-    return this._employees;
+  constructor(private http: HttpClient) {}
+
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.baseUrl).pipe(
+      tap((employees) => {
+        this.employeesSubject.next(employees); // set result to employeesSubject
+      }),
+      catchError((err) => {
+        console.error(err);
+        return throwError('An error occurred while fetching employees.');
+      })
+    );
   }
 
-  addEmployee(employee: Employee) {
-    this._employees.push(employee);
+  addEmployee(employee: Employee): void {
+    console.log('clicked in emp service');
+    this.http
+      .post<Employee>(this.baseUrl, employee, this.httpOptions)
+      .pipe(
+        tap(() => {
+          console.log('refreshed');
+          this.getEmployees().subscribe(); // refetch employees after adding an employee
+        }),
+        catchError((err) => {
+          console.error(err);
+          return throwError('An error occurred while creating the employee.');
+        })
+      )
+      .subscribe();
+  }
+
+  updateEmployee(employee: Employee): Observable<Employee> {
+    const url = `${this.baseUrl}/${employee.id}`;
+    return this.http.put<Employee>(url, employee, this.httpOptions).pipe(
+      tap(() => {
+        this.getEmployees().subscribe(); // refetch employees after updating an employee
+      }),
+      catchError((err) => {
+        console.error(err);
+        return throwError('An error occurred while updating the employee.');
+      })
+    );
   }
 
   get employee(): Employee {
-    if (!this._employee) {
-      this._employee = new Employee();
-    }
-    return this._employee;
+    return new Employee();
   }
 
-  set employee(employee: Employee) {
-    this._employee = employee;
+  get employees$(): Observable<Employee[]> {
+    return this._employees$;
   }
+
+  set employee(employee: Employee) {}
 
   addEmployeeToEdit(employee: Employee) {
-    this._employee = employee;
-  }
-
-  saveEmployee(employee: Employee) {
-    this._employees.push(employee);
+    this.employee = employee;
   }
 }
