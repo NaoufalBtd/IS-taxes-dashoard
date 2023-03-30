@@ -35,6 +35,7 @@ import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.com
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 import { LoginComponent } from './view/pages/login/login.component';
 import { ProfileComponent } from './view/pages/profile/profile.component';
+import { EmpOptionsMenuComponent } from './view/components/emp-options-menu/emp-options-menu.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ProfileComponent } from './view/pages/profile/profile.component';
     ProfileComponent,
     BannerComponent,
     EmpsCardComponent,
+    EmpOptionsMenuComponent,
   ],
   imports: [
     BrowserModule,

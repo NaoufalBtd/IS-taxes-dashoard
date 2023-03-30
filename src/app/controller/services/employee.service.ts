@@ -15,7 +15,7 @@ export class EmployeeService {
   };
 
   private employeesSubject = new BehaviorSubject<Employee[]>([]);
-  _employees$: Observable<Employee[]> = this.employeesSubject.asObservable();
+  private _employees$ = this.employeesSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 

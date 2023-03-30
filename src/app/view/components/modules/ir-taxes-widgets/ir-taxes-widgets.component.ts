@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { IrTaxService } from 'src/app/controller/services/ir-tax.service';
-import { formatIrTaxes } from 'src/app/utils';
 
 @Component({
   selector: 'app-ir-taxes-widgets',
@@ -15,7 +14,10 @@ export class IrTaxesWidgetsComponent implements OnInit {
   constructor(private IrTaxService: IrTaxService) {}
 
   ngOnInit(): void {
-    this._irInvoices = formatIrTaxes(this.IrTaxService.irTaxes);
+    this.IrTaxService.fetchIrTaxes(0, 5);
+    this.IrTaxService.irTaxes$.subscribe((irTaxes) => {
+      this._irInvoices = irTaxes;
+    });
   }
 
   get irInvoices() {
