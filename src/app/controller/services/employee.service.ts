@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import * as moment from 'moment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Employee } from '../models/employee.model';
@@ -46,6 +47,20 @@ export class EmployeeService {
         })
       )
       .subscribe();
+  }
+
+  public getUndeclaredEmployees() {
+    const year = moment().year();
+    const month = moment().month();
+    const url = `${this.baseUrl}undeclared/ICE123/${year}/${month}`;
+    return this.http.get<Employee[]>(url).pipe(
+      catchError((err) => {
+        console.error(err);
+        return throwError(
+          'An error occurred while fetching undeclared employees.'
+        );
+      })
+    );
   }
 
   updateEmployee(employee: Employee): Observable<Employee> {

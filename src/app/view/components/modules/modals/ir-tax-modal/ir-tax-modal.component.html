@@ -1,0 +1,251 @@
+<style>
+  .my-pagination ::ng-deep .ngx-pagination .current {
+    background: #8a83b2;
+    border-radius: 20px;
+  }
+  .my-pagination ::ng-deep .ngx-pagination a:hover {
+    border-radius: 20px;
+  }
+</style>
+<input type="checkbox" id="taxeir-modal" class="modal-toggle" />
+<div class="modal">
+  <div
+    class="modal-box scrollbar scrollbar-thumb-gray-900 max-w-3xl scrollbar-thin scrollbar-thumb-slate-500"
+  >
+    <div class="relative flex flex-col min-w-0 mt-6 break-words">
+      <div
+        class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent"
+      >
+        <div class="flex flex-wrap -mx-3">
+          <div class="flex items-center flex-none w-1/2 max-w-full px-3">
+            <h6 class="mb-0 dark:text-white">Payment Method</h6>
+          </div>
+          <div class="flex-none w-1/2 max-w-full px-3 text-right">
+            <a
+              class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all bg-transparent rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 hover:shadow-xs active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25"
+              href="javascript:;"
+            >
+              <i class="fas fa-plus"> </i>&nbsp;&nbsp;Add New Card</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="flex-auto p-4">
+        <div class="flex flex-wrap -mx-3">
+          <div class="max-w-full px-3 mb-6 md:mb-0 md:w-1/2 md:flex-none">
+            <div
+              class="relative flex flex-row items-center flex-auto min-w-0 p-6 break-words bg-transparent border border-solid shadow-none md-max:overflow-auto rounded-xl border-slate-100 dark:border-slate-700 bg-clip-border"
+            >
+              <img
+                class="mb-0 mr-4 w-2/12"
+                src="https://demos.creative-tim.com/argon-dashboard-tailwind/assets/img/logos/mastercard.png"
+                alt="logo"
+              />
+              <h6 class="mb-0 dark:text-white">
+                ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852
+              </h6>
+              <i
+                class="ml-auto cursor-pointer fas fa-pencil-alt text-slate-700"
+                data-target="tooltip_trigger"
+                data-placement="top"
+              ></i>
+              <div
+                data-target="tooltip"
+                class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg"
+              >
+                Edit Card
+                <div
+                  class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']"
+                  data-popper-arrow
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="max-w-full px-3 md:w-1/2 md:flex-none">
+            <div
+              class="relative flex flex-row items-center flex-auto min-w-0 p-6 break-words bg-transparent border border-solid shadow-none md-max:overflow-auto rounded-xl border-slate-100 dark:border-slate-700 bg-clip-border"
+            >
+              <img
+                class="mb-0 mr-4 w-2/12"
+                src="https://demos.creative-tim.com/argon-dashboard-tailwind/assets/img/logos/visa.png"
+                alt="logo"
+              />
+              <h6 class="mb-0 dark:text-white">
+                ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;5248
+              </h6>
+              <i
+                class="ml-auto cursor-pointer fas fa-pencil-alt text-slate-700"
+                data-target="tooltip_trigger"
+                data-placement="top"
+              ></i>
+              <div
+                data-target="tooltip"
+                class="hidden px-2 py-1 text-sm text-white bg-black rounded-lg"
+              >
+                Edit Card
+                <div
+                  class="invisible absolute h-2 w-2 bg-inherit before:visible before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit before:content-['']"
+                  data-popper-arrow
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <!-- List of employees -->
+    <h3 class="text-2xl font-semibold mb-3">Select Employees</h3>
+    <div class="overflow-x-auto w-full">
+      <table class="table w-full">
+        <!-- head -->
+        <thead>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" class="checkbox" />
+              </label>
+            </th>
+            <th>Name</th>
+            <th>email</th>
+            <th>Salary</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+          <ng-container
+            *ngFor="
+              let emp of employees
+                | paginate : { itemsPerPage: 5, currentPage: p }
+            "
+          >
+            <tr *ngIf="emp.selected == false">
+              <th>
+                <label>
+                  <input type="checkbox" class="checkbox" />
+                </label>
+              </th>
+              <td>
+                <div class="flex items-center space-x-3">
+                  <div class="avatar">
+                    <div class="mask mask-squircle w-12 h-12">
+                      <img
+                        src="https://i.pravatar.cc/150?img={{
+                          employees.indexOf(emp)
+                        }}"
+                        alt="Avatar Tailwind CSS Component"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div class="font-bold">{{ emp.prenom }} {{ emp.nom }}</div>
+                    <div class="text-sm opacity-50">Morocco</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                {{ emp.email }}
+                <br />
+                <!-- <span class="badge badge-ghost badge-sm">Desktop Support Technician</span> -->
+              </td>
+              <td>{{ emp.salaire }}</td>
+              <th>
+                <button
+                  (click)="toggleEmployee(emp)"
+                  class="btn btn-ghost btn-md"
+                >
+                  <fa-icon [icon]="faAdd"></fa-icon>
+                </button>
+              </th>
+            </tr>
+          </ng-container>
+        </tbody>
+        <!-- foot -->
+        <tfoot>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Job</th>
+            <th>Favorite Color</th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="my-3 flex justify-center">
+        <pagination-controls
+          class="my-pagination"
+          (pageChange)="p = $event"
+        ></pagination-controls>
+      </div>
+    </div>
+
+    <!-- Selected Employees -->
+    <div
+      class="flex-auto bg-slate-50 p-4 pt-6 border border-gray200 rounded-md max-h-72 overflow-auto scrollbar scrollbar-thumb-gray-900 scrollbar-track-gray-100 scrollbar-rounded-xl scrollbar-w-2 scrollbar-thin"
+    >
+      <div *ngIf="selectedEmployees.length == 0" class="p3">
+        <h1 class="text-2xl font-bold m-auto text-center">
+          No Employees Selected Yet!
+        </h1>
+      </div>
+      <ng-container *ngFor="let emp of employees">
+        <li
+          *ngIf="emp.selected == true"
+          class="relative flex p-6 mb-2 border-0 rounded-t-inherit rounded-xl bg-white dark:bg-slate-850 shadow-md items-center"
+        >
+          <div class="flex flex-col">
+            <h6 class="mb-4 text-sm leading-normal dark:text-white">
+              <div class="flex items-center">
+                <div class="avatar">
+                  <div class="w-8 mask mask-squircle">
+                    <img src="https://i.pravatar.cc/150?img=1" />
+                  </div>
+                </div>
+                <div class="ml-3">
+                  <span
+                    class="font-semibold text-slate-700 dark:text-white block"
+                    >{{ emp.prenom }} {{ emp.nom }}</span
+                  >
+                  <span class="text-xs text-slate-600 dark:text-slate-400"
+                    >Morocco</span
+                  >
+                </div>
+              </div>
+            </h6>
+            <span class="mb-2 text-xs leading-tight dark:text-white/80"
+              >Email:
+              <span
+                class="font-semibold text-slate-700 dark:text-white sm:ml-2"
+                >{{ emp.email }}</span
+              ></span
+            >
+            <span class="mb-2 text-xs leading-tight dark:text-white/80"
+              >Salary:
+              <span
+                class="font-semibold text-slate-700 dark:text-white sm:ml-2"
+                >{{ emp.salaire }}</span
+              ></span
+            >
+          </div>
+          <div class="ml-auto text-right">
+            <a
+              class="relative z-10 inline-block px-4 py-2.5 mb-0 font-bold text-center text-transparent align-middle transition-all border-0 rounded-lg shadow-none cursor-pointer leading-normal text-sm ease-in bg-150 bg-gradient-to-tl from-red-600 to-orange-600 hover:-translate-y-px active:opacity-85 bg-x-25 bg-clip-text"
+              href="javascript:;"
+              (click)="toggleEmployee(emp)"
+              ><i
+                class="mr-2 far fa-trash-alt bg-150 bg-gradient-to-tl from-red-600 to-orange-600 bg-x-25 bg-clip-text"
+              ></i
+              >Remove</a
+            >
+          </div>
+        </li>
+      </ng-container>
+    </div>
+    <!-- Action Button -->
+    <div class="modal-action">
+      <label for="taxeir-modal" class="btn btn-outline">Cancel</label>
+      <label for="taxeir-modal" class="btn btn-primary">Declare!</label>
+    </div>
+  </div>
+</div>
