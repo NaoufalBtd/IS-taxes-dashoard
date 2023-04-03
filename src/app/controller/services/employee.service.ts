@@ -1,29 +1,29 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import * as moment from 'moment';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { httpOptions } from 'src/app/shared/constants';
+import { undeclaredEmployee } from 'src/types/models';
 import { Employee } from '../models/employee.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EmployeeService {
-  private baseUrl = 'http://localhost:8036/api/v1/employe/'; // replace with your backend URL
-  private httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  };
+  private baseUrl = 'http://localhost:8036/api/v1/employe/';
 
-  private employeesSubject = new BehaviorSubject<Employee[]>([]);
-  private _employees$ = this.employeesSubject.asObservable();
+  private _employees$ = new BehaviorSubject<Employee[]>([]);
+  private _undeclaredEmployees$ = new BehaviorSubject<undeclaredEmployee[]>([]);
+  private _employeeCount$ = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {}
 
-  getEmployees(): Observable<Employee[]> {
+  getEmployees() {
     return this.http.get<Employee[]>(this.baseUrl).pipe(
       tap((employees) => {
-        this.employeesSubject.next(employees); // set result to employeesSubject
+        this._employees$.next(employees);
       }),
       catchError((err) => {
         console.error(err);
@@ -35,7 +35,7 @@ export class EmployeeService {
   addEmployee(employee: Employee): void {
     console.log('clicked in emp service');
     this.http
-      .post<Employee>(this.baseUrl, employee, this.httpOptions)
+      .post<Employee>(this.baseUrl, employee, httpOptions)
       .pipe(
         tap(() => {
           console.log('refreshed');
@@ -54,6 +54,14 @@ export class EmployeeService {
     const month = moment().month();
     const url = `${this.baseUrl}undeclared/ICE123/${year}/${month}`;
     return this.http.get<Employee[]>(url).pipe(
+      tap((employees) => {
+        const emps = employees.map((emp) => ({
+          ...emp,
+          checked: false,
+          selected: false,
+        }));
+        this._undeclaredEmployees$.next(emps);
+      }),
       catchError((err) => {
         console.error(err);
         return throwError(
@@ -62,10 +70,31 @@ export class EmployeeService {
       })
     );
   }
+  public fetchUndeclaredEmployees() {
+    this.getUndeclaredEmployees().subscribe();
+  }
+
+  public fetchEmployeeCount() {
+    const url = `${this.baseUrl}count`;
+    return this.http
+      .get<number>(url)
+      .pipe(
+        tap((count) => {
+          this._employeeCount$.next(count);
+        }),
+        catchError((err) => {
+          console.error(err);
+          return throwError(
+            'An error occurred while fetching employees count.'
+          );
+        })
+      )
+      .subscribe();
+  }
 
   updateEmployee(employee: Employee): Observable<Employee> {
     const url = `${this.baseUrl}/${employee.id}`;
-    return this.http.put<Employee>(url, employee, this.httpOptions).pipe(
+    return this.http.put<Employee>(url, employee, httpOptions).pipe(
       tap(() => {
         this.getEmployees().subscribe(); // refetch employees after updating an employee
       }),
@@ -76,12 +105,20 @@ export class EmployeeService {
     );
   }
 
-  get employee(): Employee {
+  get employee() {
     return new Employee();
   }
 
-  get employees$(): Observable<Employee[]> {
-    return this._employees$;
+  get employees$() {
+    return this._employees$.asObservable();
+  }
+
+  get employeeCount$() {
+    return this._employeeCount$.asObservable();
+  }
+
+  get undeclaredEmployees$() {
+    return this._undeclaredEmployees$.asObservable();
   }
 
   set employee(employee: Employee) {}

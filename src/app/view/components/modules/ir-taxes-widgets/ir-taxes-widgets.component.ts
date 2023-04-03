@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
-import { Employee } from 'src/app/controller/models/employee.model';
 import { EmployeeService } from 'src/app/controller/services/employee.service';
-import { IrTaxService } from 'src/app/controller/services/ir-tax.service';
+import { undeclaredEmployee } from 'src/types/models';
 
 @Component({
   selector: 'app-ir-taxes-widgets',
@@ -12,22 +11,25 @@ import { IrTaxService } from 'src/app/controller/services/ir-tax.service';
 export class IrTaxesWidgetsComponent implements OnInit {
   faFilePdf = faFilePdf;
   private _irInvoices: any[] = [];
-  private _undeclaredEmployees: Employee[] = [];
+  private _undeclaredEmployees: undeclaredEmployee[] = [];
+  allTaxesDeclared: boolean = true;
 
-  constructor(
-    private IrTaxService: IrTaxService,
-    private empService: EmployeeService
-  ) {}
+  constructor(private empService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.IrTaxService.fetchIrTaxes(0, 5);
-    this.IrTaxService.irTaxes$.subscribe((irTaxes) => {
-      this._irInvoices = irTaxes;
-    });
-    this.empService.getUndeclaredEmployees().subscribe((employees) => {
-      console.log(employees);
+    this.empService.getUndeclaredEmployees().subscribe();
+    this.empService.undeclaredEmployees$.subscribe((employees) => {
       this._undeclaredEmployees = employees;
+      this.allTaxesDeclared = this._undeclaredEmployees.length === 0;
     });
+  }
+
+  get employees() {
+    return this._undeclaredEmployees;
+  }
+
+  get undeclaredEmployeesLength() {
+    return this._undeclaredEmployees.length;
   }
 
   get irInvoices() {

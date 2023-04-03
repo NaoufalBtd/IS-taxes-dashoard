@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { InvoiceService } from 'src/app/controller/services/invoice.service';
-import { getTotalFromInvoices } from 'src/app/utils';
+import { getTotalFromInvoices } from 'src/app/shared/utils';
 
 @Component({
   selector: 'app-expenses-card',

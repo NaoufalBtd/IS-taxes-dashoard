@@ -14,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgChartsModule } from 'ng2-charts';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppComponent } from './app.component';
-import { AuthInterceptor } from './helpers/auth.interceptor';
+import { AuthInterceptor } from './shared/helpers/auth.interceptor';
 import { DashboardLayoutComponent } from './view/components/layouts/dashboard-layout/dashboard-layout.component';
 import { BannerComponent } from './view/components/modules/banner/banner.component';
 import { EmpOptionsMenuComponent } from './view/components/modules/emp-options-menu/emp-options-menu.component';

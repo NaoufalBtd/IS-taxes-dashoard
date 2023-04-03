@@ -8,54 +8,39 @@
     <span>IR Status</span>
   </div>
   <div class="p-2 h-full flex-col flex items-end justify-center">
-    <!-- <div class="flex flex-col items-center justify-center">
-      You do not have any taxes to be paid
-    </div> -->
-    <div class="carousel w-full">
-      <div id="item1" class="carousel-item block w-full">
-        <div class="flex flex-col items-center justify-center">
+    <div>
+      <div class="flex flex-col items-center justify-center">
+        <ng-container *ngIf="allTaxesDeclared; else taxeAvailable">
+          <div class="flex items-center">
+            <h5 class="font-semibold text-xl mr-2">All Taxes are Paid!</h5>
+            <span class="badge badge-success text-white">info</span>
+          </div>
+          <div class="p-2">
+            <p class="text-center">All IR taxes for 03/2023 have been paid</p>
+          </div>
+        </ng-container>
+        <ng-template #taxeAvailable>
           <div class="flex items-center">
             <h5 class="font-semibold text-2xl mr-2">Mars, 2022</h5>
             <span class="badge badge-info text-white">info</span>
           </div>
           <div class="p-2">
             <p class="text-center">
-              IR taxes for 03/2023 are available to be paid
+              you still have <b>{{ undeclaredEmployeesLength }} undeclared</b>
+              employees for 03/2023
             </p>
             <div class="flex justify-center">
               <label
                 for="taxeir-modal"
                 class="btn btn-primary btn-outline w-full mt-3"
-                >Pay Now</label
+                >Declare Now</label
               >
             </div>
           </div>
-        </div>
+        </ng-template>
       </div>
-      <div id="item2" class="carousel-item w-full">
-        <div class="flex flex-col items-center justify-center">
-          You do not have any taxes to be paid
-        </div>
-      </div>
-      <div id="item3" class="carousel-item w-full">
-        <div class="flex flex-col items-center justify-center">
-          You do not have any taxes to be paid
-        </div>
-      </div>
-      <div id="item4" class="carousel-item w-full">
-        <div class="flex flex-col items-center justify-center">
-          You do not have any taxes to be paid
-        </div>
-      </div>
-    </div>
-    <div class="flex-1"></div>
-    <div class="flex justify-center w-full py-2 gap-2">
-      <a href="#item1" class="btn btn-xs">1</a>
-      <a href="#item2" class="btn btn-xs">2</a>
-      <a href="#item3" class="btn btn-xs">3</a>
-      <a href="#item4" class="btn btn-xs">4</a>
     </div>
   </div>
 </div>
 
-<app-ir-tax-modal></app-ir-tax-modal>
+<app-ir-tax-modal [employees]="employees"></app-ir-tax-modal>

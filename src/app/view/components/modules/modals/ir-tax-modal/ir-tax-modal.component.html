@@ -95,7 +95,16 @@
     </div>
     <div class="divider"></div>
     <!-- List of employees -->
-    <h3 class="text-2xl font-semibold mb-3">Select Employees</h3>
+    <div class="flex justify-between">
+      <h3 class="text-2xl font-semibold mb-3">Select Employees</h3>
+      <button
+        class="btn my-2"
+        [disabled]="checkedEmployees.length === 0"
+        (click)="selectCheckedEmps()"
+      >
+        ADD
+      </button>
+    </div>
     <div class="overflow-x-auto w-full">
       <table class="table w-full">
         <!-- head -->
@@ -103,7 +112,13 @@
           <tr>
             <th>
               <label>
-                <input type="checkbox" class="checkbox" />
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  [checked]="checkAll"
+                  #myCheckbox
+                  (change)="toggleCheckAll(myCheckbox.checked)"
+                />
               </label>
             </th>
             <th>Name</th>
@@ -123,7 +138,12 @@
             <tr *ngIf="emp.selected == false">
               <th>
                 <label>
-                  <input type="checkbox" class="checkbox" />
+                  <input
+                    type="checkbox"
+                    class="checkbox"
+                    [checked]="emp.checked"
+                    (change)="toggleCheck(emp)"
+                  />
                 </label>
               </th>
               <td>
@@ -245,7 +265,12 @@
     <!-- Action Button -->
     <div class="modal-action">
       <label for="taxeir-modal" class="btn btn-outline">Cancel</label>
-      <label for="taxeir-modal" class="btn btn-primary">Declare!</label>
+      <label
+        for="taxeir-modal"
+        class="btn btn-primary"
+        (click)="handleDeclaration()"
+        >Declare!</label
+      >
     </div>
   </div>
 </div>

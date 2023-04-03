@@ -1,3 +1,5 @@
+import { Employee as Emp } from 'src/app/controller/models/employee.model';
+
 export type Employee = {
   id: string;
   prenom: string;
@@ -19,4 +21,9 @@ export enum NotificationSeverityLevel {
   info = 'info',
   warning = 'warning',
   danger = 'danger',
+}
+
+export interface undeclaredEmployee extends Emp {
+  checked: boolean;
+  selected: boolean;
 }

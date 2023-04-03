@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import IrTax from '../models/IrTax.model';
+import { EmployeeService } from './employee.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class IrTaxService {
 
   private _irTaxes$ = this.irTaxesSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private empsService: EmployeeService) {}
 
   public get irTaxes$() {
     return this._irTaxes$;
@@ -37,6 +38,20 @@ export class IrTaxService {
         })
       )
       .subscribe();
+  }
+
+  public declareEmployeesTax(employees: any[]) {
+    const data = {
+      mois: moment().month(),
+      annee: moment().year(),
+      dateDeclaration: moment().format('YYYY-MM-DD'),
+      societe: { id: '1', ice: 'ICE123' },
+      employes: employees,
+    };
+    this.http.post(this.baseUrl, data).subscribe(() => {
+      this.fetchIrTaxes();
+      this.empsService.fetchUndeclaredEmployees();
+    });
   }
 
   formatIrTaxes(taxes: any[]) {

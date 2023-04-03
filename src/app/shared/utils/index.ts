@@ -2,8 +2,8 @@
 
 import * as moment from 'moment';
 import { NotificationSeverityLevel } from 'src/types/models';
-import { Invoice } from '../controller/models/invoice.model';
-import { NotificationIs } from '../controller/models/notifications.model';
+import { Invoice } from '../../controller/models/invoice.model';
+import { NotificationIs } from '../../controller/models/notifications.model';
 
 export const getTotalFromInvoices = (invoices: Invoice[], date: Date) => {
   let total = 0;
