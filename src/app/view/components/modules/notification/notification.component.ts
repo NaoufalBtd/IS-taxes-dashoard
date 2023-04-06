@@ -6,7 +6,10 @@ import {
   faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { NotificationIsService } from 'src/app/controller/services/notification-is.service';
-import { Notification, NotificationSeverityLevel } from 'src/types/models';
+import {
+  Notification,
+  NotificationSeverityLevel,
+} from 'src/app/shared/types/models';
 
 @Component({
   selector: 'app-notification',

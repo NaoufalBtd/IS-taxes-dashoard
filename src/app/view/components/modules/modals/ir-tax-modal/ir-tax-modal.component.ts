@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { faAdd, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { EmployeeService } from 'src/app/controller/services/employee.service';
 import { IrTaxService } from 'src/app/controller/services/ir-tax.service';
-import { undeclaredEmployee } from 'src/types/models';
+import { UndeclaredEmployee } from 'src/app/shared/types/models';
 
 @Component({
   selector: 'app-ir-tax-modal',
@@ -10,7 +10,7 @@ import { undeclaredEmployee } from 'src/types/models';
   styleUrls: ['./ir-tax-modal.component.css'],
 })
 export class IrTaxModalComponent implements OnInit {
-  @Input() employees: undeclaredEmployee[] = [];
+  @Input() employees: UndeclaredEmployee[] = [];
 
   faAdd = faAdd;
   faEllipsisV = faEllipsisV;

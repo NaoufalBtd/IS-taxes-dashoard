@@ -1,9 +1,11 @@
 export class Employee {
-  public id: string | undefined;
-  public prenom: string | undefined;
-  public nom: string | undefined;
-  public cin: string | undefined;
-  public email: string | undefined;
-  public age: string | undefined;
-  public salaire: string | undefined;
+  public id: string = '';
+  public prenom: string = '';
+  public nom: string = '';
+  public cin: string = '';
+  public email: string = '';
+  public age: string = '';
+  public salaire: string = '';
+
+  [key: string]: string | number | boolean | undefined;
 }

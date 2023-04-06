@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
 import { Invoice } from 'src/app/controller/models/invoice.model';
 import { InvoiceService } from 'src/app/controller/services/invoice.service';
+import { getChartData } from 'src/app/shared/utils';
 
 @Component({
   selector: 'app-turnover-chart',
@@ -10,11 +11,20 @@ import { InvoiceService } from 'src/app/controller/services/invoice.service';
 })
 export class TurnoverChartComponent implements OnInit {
   incomeInvoice: Invoice[] = [];
+  incomeData: number[] = [];
+  chartLabels: string[] = [];
+  isLoaded = false;
 
   constructor(private invoiceService: InvoiceService) {}
   ngOnInit(): void {
-    this.incomeInvoice = this.invoiceService.getIncomeInvoice();
-    console.log(this.incomeInvoice);
+    this.invoiceService.fetchIncomeStatistics();
+    this.invoiceService.incomeCount$.subscribe((data) => {
+      const chartData = getChartData(data);
+      this.incomeData = chartData.data;
+      this.incomeData.push(5000);
+      this.chartLabels = chartData.labels;
+      this.chartData = this.generateChartData();
+    });
   }
 
   public chartOptions: ChartOptions<'line'> = {
@@ -112,27 +122,30 @@ export class TurnoverChartComponent implements OnInit {
       // },
     },
   };
-  public chartLabels = ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
   public chartType = 'line';
-  public chartData: ChartConfiguration<'line'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        data: [65, 59, 80, 81, 56, 55, 40],
-        label: 'Income',
-        fill: true,
-        tension: 0.5,
-        borderColor: 'rgb(13, 148, 136)',
-        backgroundColor: 'rgba(13, 148, 136, 0.1)',
-      },
-      {
-        data: [28, 48, 40, 19, 86, 27, 90],
-        label: 'Expenses',
-        fill: true,
-        tension: 0.5,
-        borderColor: 'rgb(87, 13, 248)',
-        backgroundColor: 'rgba(87, 13, 248, 0.1)',
-      },
-    ],
-  };
+  public chartData: ChartConfiguration<'line'>['data'] =
+    this.generateChartData();
+  generateChartData() {
+    return {
+      labels: this.chartLabels,
+      datasets: [
+        {
+          data: this.incomeData,
+          label: 'Income',
+          fill: true,
+          tension: 0.5,
+          borderColor: 'rgb(13, 148, 136)',
+          backgroundColor: 'rgba(13, 148, 136, 0.1)',
+        },
+        {
+          data: [2800, 4800, 400, 1900, 8600, 2700, 900],
+          label: 'Expenses',
+          fill: true,
+          tension: 0.5,
+          borderColor: 'rgb(87, 13, 248)',
+          backgroundColor: 'rgba(87, 13, 248, 0.1)',
+        },
+      ],
+    };
+  }
 }

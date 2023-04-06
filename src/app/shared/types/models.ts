@@ -23,7 +23,13 @@ export enum NotificationSeverityLevel {
   danger = 'danger',
 }
 
-export interface undeclaredEmployee extends Emp {
+export interface UndeclaredEmployee extends Emp {
   checked: boolean;
   selected: boolean;
+}
+
+export interface InvoiceStats {
+  month: number;
+  year: number;
+  sum: number;
 }

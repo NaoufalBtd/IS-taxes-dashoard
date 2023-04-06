@@ -9,17 +9,40 @@ import { EmployeeService } from 'src/app/controller/services/employee.service';
 })
 export class EmployeeModalComponent implements OnInit {
   private _employee: Employee = new Employee();
+  public isFilled = false;
+  public saving = false;
+
   constructor(private empService: EmployeeService) {}
 
   ngOnInit(): void {}
   get employee() {
     return this._employee;
   }
+  set employee(employee: Employee) {
+    this._employee = employee;
+  }
 
   saveEmployee() {
-    console.log('saveEmployee() called' + JSON.stringify(this.employee.prenom));
-    this.empService.addEmployee(this.employee);
+    this.saving = true;
+    this.empService.addEmployee(this.employee, () => {
+      this.saving = false;
+    });
+    this.clearEmployee();
     // this.empService.AddEmployee(this.employee);
     // this.empService.saveEmployee(this.employee);
+  }
+
+  checkInputs() {
+    for (const key in this._employee) {
+      if (this._employee[key] === '' && key !== 'id') {
+        this.isFilled = false;
+        break;
+      }
+      this.isFilled = true;
+    }
+  }
+
+  clearEmployee() {
+    this._employee = new Employee();
   }
 }

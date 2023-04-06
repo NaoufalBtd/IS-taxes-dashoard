@@ -3,54 +3,81 @@
   <div class="modal-box">
     <h3 class="font-bold text-lg mb-3">Add Employee</h3>
     <!-- <p class="text-sm mb-3">Add a new employee to your account.</p> -->
-    <div class="flex gap-2 items-center justify-between mb-2">
-      <input
-        type="text"
-        id="prenom"
-        placeholder="First Name"
-        [(ngModel)]="employee.prenom"
-        class="input w-full max-w-xs input-bordered"
-      />
-      <input
-        type="text"
-        id="nom"
-        [(ngModel)]="employee.nom"
-        placeholder="Last Name"
-        class="input w-full max-w-xs input-bordered"
-      />
-    </div>
-    <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
-      <input
-        type="text"
-        placeholder="Email"
-        [(ngModel)]="employee.email"
-        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
-      />
-      <input
-        type="text"
-        placeholder="CIN"
-        [(ngModel)]="employee.cin"
-        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
-      />
-    </div>
-    <!-- Add age and salary inputs -->
-    <div class="flex gap-2 items-center justify-between mb-2">
-      <input
-        type="number"
-        [(ngModel)]="employee.age"
-        placeholder="Age"
-        class="input input-bordered w-full max-w-xs"
-      />
-      <input
-        type="number"
-        [(ngModel)]="employee.salaire"
-        placeholder="Salary"
-        class="input input-bordered w-full max-w-xs"
-      />
-    </div>
-    <div class="modal-action">
-      <label for="emp-modal" class="btn btn-outline">Cancel</label>
-      <label for="emp-modal" (click)="saveEmployee()" class="btn">Save</label>
-    </div>
+    <form #employeeForm="ngForm" name="employeeForm">
+      <div class="flex gap-2 items-center justify-between mb-2">
+        <input
+          type="text"
+          id="prenom"
+          name="prenom"
+          placeholder="First Name"
+          required
+          (change)="checkInputs()"
+          [(ngModel)]="employee.prenom"
+          class="input w-full max-w-xs input-bordered"
+        />
+        <input
+          type="text"
+          id="nom"
+          name="nom"
+          required=""
+          [(ngModel)]="employee.nom"
+          (change)="checkInputs()"
+          placeholder="Last Name"
+          class="input w-full max-w-xs input-bordered"
+        />
+      </div>
+      <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
+        <input
+          type="text"
+          name="email"
+          required
+          placeholder="Email"
+          (change)="checkInputs()"
+          [(ngModel)]="employee.email"
+          class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+        />
+        <input
+          type="text"
+          name="cin"
+          required
+          placeholder="CIN"
+          (change)="checkInputs()"
+          [(ngModel)]="employee.cin"
+          class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
+        />
+      </div>
+      <!-- Add age and salary inputs -->
+      <div class="flex gap-2 items-center justify-between mb-2">
+        <input
+          type="number"
+          name="age"
+          [(ngModel)]="employee.age"
+          required
+          (change)="checkInputs()"
+          placeholder="Age"
+          class="input input-bordered w-full max-w-xs"
+          pattern="[0-9]{1,2}"
+        />
+        <input
+          type="number"
+          name="salaire"
+          [(ngModel)]="employee.salaire"
+          placeholder="Salary"
+          (change)="checkInputs()"
+          required
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div class="modal-action">
+        <label for="emp-modal" class="btn btn-outline">Cancel</label>
+        <button
+          [ngClass]="{ loading: saving }"
+          class="btn"
+          [disabled]="!isFilled"
+        >
+          <label for="emp-modal" (click)="saveEmployee()">Save</label>
+        </button>
+      </div>
+    </form>
   </div>
 </div>

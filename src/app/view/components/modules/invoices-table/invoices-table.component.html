@@ -34,7 +34,7 @@
       </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
-      <tr *ngFor="let invoice of invoices">
+      <tr *ngFor="let invoice of invoices$ | async">
         <td class="px-6 py-4 whitespace-nowrap">
           <div class="text-sm text-gray-900">{{invoice.id}}</div>
         </td>
@@ -42,13 +42,13 @@
           <span class="badge" [ngClass]="{'badge' : true,'badge-success text-white': invoice.type === 'INCOME', 'badge-primary': invoice.type !== 'INCOME'}">{{invoice.type}}</span>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">{{invoice.montantHt}}</div>
+          <div class="text-sm text-gray-900">{{invoice.montantHT}}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">{{invoice.montantTtc}}</div>
+          <div class="text-sm text-gray-900">{{invoice.montantTTC}}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">{{invoice.date}}</div>
+          <div class="text-sm text-gray-900">{{invoice.dateFacture}}</div>
         </td>
       </tr>
 

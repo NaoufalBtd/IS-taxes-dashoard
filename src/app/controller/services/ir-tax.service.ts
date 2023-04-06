@@ -22,13 +22,14 @@ export class IrTaxService {
   }
 
   public fetchIrTaxes(page?: number, size?: number) {
-    const url = `${this.baseUrl}?page=${page}&size=${size}`;
+    const url = new URL(this.baseUrl);
+    page && url.searchParams.append('page', page.toString());
+    size && url.searchParams.append('size', size.toString());
 
     this.http
-      .get<IrTax[]>(url)
+      .get<IrTax[]>(url.href)
       .pipe(
         tap((taxes: any[]) => {
-          console.log('taxes', taxes);
           const irTaxes = this.formatIrTaxes(taxes);
           this.irTaxesSubject.next(irTaxes);
         }),

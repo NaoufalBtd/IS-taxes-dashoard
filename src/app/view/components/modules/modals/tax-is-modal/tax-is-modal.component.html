@@ -114,13 +114,13 @@
       <input
         type="number"
         placeholder="Montant HT"
-        [(ngModel)]="invoice.montantHt"
+        [(ngModel)]="invoice.montantHT"
         class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
       />
       <input
         type="number"
         placeholder="Montant TTC"
-        [(ngModel)]="invoice.montantTtc"
+        [(ngModel)]="invoice.montantTTC"
         class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
       />
     </div>
@@ -148,21 +148,21 @@
               >Invoice Date:
               <span
                 class="font-semibold text-slate-700 dark:text-white sm:ml-2"
-                >{{ invoice.date }}</span
+                >{{ invoice.dateFacture }}</span
               ></span
             >
             <span class="mb-2 text-xs leading-tight dark:text-white/80"
               >Montant TTC:
               <span
                 class="font-semibold text-slate-700 dark:text-white sm:ml-2"
-                >{{ invoice.montantTtc }}</span
+                >{{ invoice.montantTTC }}</span
               ></span
             >
             <span class="text-xs mb-2 leading-tight dark:text-white/80"
               >Montant HT:
               <span
                 class="font-semibold text-slate-700 dark:text-white sm:ml-2"
-                >{{ invoice.montantHt }}</span
+                >{{ invoice.montantHT }}</span
               ></span
             >
             <span class="text-xs leading-tight dark:text-white/80"

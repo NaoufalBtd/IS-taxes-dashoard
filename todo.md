@@ -1,1 +1,2 @@
 - Change the undefined in models and add a constructor with default value in assignment
+- understand the search input

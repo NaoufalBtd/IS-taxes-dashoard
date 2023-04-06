@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { EmployeeService } from 'src/app/controller/services/employee.service';
-import { undeclaredEmployee } from 'src/types/models';
+import { UndeclaredEmployee } from 'src/app/shared/types/models';
 
 @Component({
   selector: 'app-ir-taxes-widgets',
@@ -11,7 +11,7 @@ import { undeclaredEmployee } from 'src/types/models';
 export class IrTaxesWidgetsComponent implements OnInit {
   faFilePdf = faFilePdf;
   private _irInvoices: any[] = [];
-  private _undeclaredEmployees: undeclaredEmployee[] = [];
+  private _undeclaredEmployees: UndeclaredEmployee[] = [];
   allTaxesDeclared: boolean = true;
 
   constructor(private empService: EmployeeService) {}

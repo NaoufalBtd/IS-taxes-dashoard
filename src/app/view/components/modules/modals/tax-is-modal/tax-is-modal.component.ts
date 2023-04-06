@@ -14,7 +14,7 @@ export class TaxIsModalComponent implements OnInit {
   constructor(private invoiceService: InvoiceService) {}
 
   ngOnInit() {
-    this._invoices = this.invoiceService.invoices;
+    // this._invoices = this.invoiceService.invoices;
   }
   saveInvoice() {
     console.log('clicked');

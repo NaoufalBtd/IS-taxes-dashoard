@@ -1,9 +1,9 @@
-import { InvoiceType } from 'src/types';
+import { InvoiceType } from 'src/app/shared/types';
 
 export class Invoice {
-  type: InvoiceType | undefined;
-  id: string | undefined;
-  montantHt: number | undefined;
-  montantTtc: number | undefined;
-  date: string | undefined;
+  type: InvoiceType = InvoiceType.income;
+  id: string = '';
+  montantHT: number = 0;
+  montantTTC: number = 0;
+  dateFacture: string = '';
 }

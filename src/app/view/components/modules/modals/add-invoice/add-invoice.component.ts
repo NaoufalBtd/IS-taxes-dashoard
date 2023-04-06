@@ -10,8 +10,8 @@ import { InvoiceService } from 'src/app/controller/services/invoice.service';
 export class AddInvoiceComponent {
   public invoice: Invoice = new Invoice();
   constructor(private invoiceService: InvoiceService) {}
+
   saveInvoice() {
-    console.log('clicked');
-    this.invoiceService.addInvoice({ ...this.invoice });
+    this.invoiceService.addInvoice(this.invoice);
   }
 }

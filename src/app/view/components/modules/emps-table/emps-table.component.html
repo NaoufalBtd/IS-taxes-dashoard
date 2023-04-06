@@ -34,6 +34,9 @@
         type="text"
         class="input input-bordered"
         placeholder="Enter name..."
+        [(ngModel)]="searchTerm"
+        (change)="searchByName()"
+        (keydown)="searchByName()"
       />
     </div>
   </div>

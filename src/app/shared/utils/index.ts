@@ -1,15 +1,18 @@
 // get totalIncome from array of invoices for specific month
 
 import * as moment from 'moment';
-import { NotificationSeverityLevel } from 'src/types/models';
+import {
+  InvoiceStats,
+  NotificationSeverityLevel,
+} from 'src/app/shared/types/models';
 import { Invoice } from '../../controller/models/invoice.model';
 import { NotificationIs } from '../../controller/models/notifications.model';
 
 export const getTotalFromInvoices = (invoices: Invoice[], date: Date) => {
   let total = 0;
   invoices.forEach((invoice) => {
-    if (moment(invoice.date).isSame(date, 'month')) {
-      total += invoice.montantTtc!;
+    if (moment(invoice.dateFacture).isSame(date, 'month')) {
+      total += invoice.montantTTC!;
     }
   });
   return total;
@@ -24,16 +27,36 @@ export const getLastSixMonths = () => {
   return months;
 };
 
-export const getChartData = (invoices: Invoice[]) => {
-  const months = getLastSixMonths();
+export const getChartData = (statistics: InvoiceStats[]) => {
   const labels: string[] = [];
   const data: number[] = [];
-  months.forEach((month) => {
-    labels.push(moment(month).format('MMM'));
-    data.push(getTotalFromInvoices(invoices, month));
+  statistics.forEach((el) => {
+    labels.push(moment().month(el.month).year(el.year).format('MMM'));
+    data.push(el.sum);
   });
+
   return { data, labels };
 };
+
+export const getThisMonthSum = (data: InvoiceStats[]) => {
+  const thisMonth = moment().month();
+  const thisYear = moment().year();
+  const thisMonthSum = data.find(
+    (el) => el.month === thisMonth && el.year === thisYear
+  );
+  return thisMonthSum ? thisMonthSum.sum : 0;
+};
+
+// export const getChartData = (invoices: Invoice[]) => {
+//   const months = getLastSixMonths();
+//   const labels: string[] = [];
+//   const data: number[] = [];
+//   months.forEach((month) => {
+//     labels.push(moment(month).format('MMM'));
+//     data.push(getTotalFromInvoices(invoices, month));
+//   });
+//   return { data, labels };
+// };
 
 export const getAlertNotification = (data: NotificationIs[]) => {
   return data.map((notification) => {

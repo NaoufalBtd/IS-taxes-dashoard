@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import * as moment from 'moment';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { httpOptions } from 'src/app/shared/constants';
-import { undeclaredEmployee } from 'src/types/models';
+import { UndeclaredEmployee } from 'src/app/shared/types/models';
 import { Employee } from '../models/employee.model';
 
 @Injectable({
@@ -15,13 +15,33 @@ export class EmployeeService {
   private baseUrl = 'http://localhost:8036/api/v1/employe/';
 
   private _employees$ = new BehaviorSubject<Employee[]>([]);
-  private _undeclaredEmployees$ = new BehaviorSubject<undeclaredEmployee[]>([]);
+  private _undeclaredEmployees$ = new BehaviorSubject<UndeclaredEmployee[]>([]);
   private _employeeCount$ = new BehaviorSubject<number>(0);
+  public searchTerms$ = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
-  getEmployees() {
-    return this.http.get<Employee[]>(this.baseUrl).pipe(
+  fetchEmployees() {
+    const url = new URL(this.baseUrl);
+    return this.http
+      .get<Employee[]>(this.baseUrl)
+      .pipe(
+        tap((employees) => {
+          this._employees$.next(employees);
+        }),
+        catchError((err) => {
+          console.error(err);
+          return throwError('An error occurred while fetching employees.');
+        })
+      )
+      .subscribe();
+  }
+
+  searchEmployees(searchTerm: string) {
+    const url = new URL(this.baseUrl);
+    url.searchParams.append('name', searchTerm);
+
+    return this.http.get<Employee[]>(url.href).pipe(
       tap((employees) => {
         this._employees$.next(employees);
       }),
@@ -32,21 +52,21 @@ export class EmployeeService {
     );
   }
 
-  addEmployee(employee: Employee): void {
+  addEmployee(employee: Employee, next?: (value: Employee) => void): void {
     console.log('clicked in emp service');
     this.http
       .post<Employee>(this.baseUrl, employee, httpOptions)
       .pipe(
         tap(() => {
           console.log('refreshed');
-          this.getEmployees().subscribe(); // refetch employees after adding an employee
+          this.fetchEmployees(); // refetch employees after adding an employee
         }),
         catchError((err) => {
           console.error(err);
           return throwError('An error occurred while creating the employee.');
         })
       )
-      .subscribe();
+      .subscribe(next);
   }
 
   public getUndeclaredEmployees() {
@@ -96,7 +116,7 @@ export class EmployeeService {
     const url = `${this.baseUrl}/${employee.id}`;
     return this.http.put<Employee>(url, employee, httpOptions).pipe(
       tap(() => {
-        this.getEmployees().subscribe(); // refetch employees after updating an employee
+        this.fetchEmployees(); // refetch employees after updating an employee
       }),
       catchError((err) => {
         console.error(err);

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Notification, NotificationSeverityLevel } from 'src/types/models';
+import {
+  Notification,
+  NotificationSeverityLevel,
+} from 'src/app/shared/types/models';
 
 @Injectable({
   providedIn: 'root',
