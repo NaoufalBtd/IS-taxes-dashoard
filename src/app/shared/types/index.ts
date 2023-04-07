@@ -1,4 +1,4 @@
 export enum InvoiceType {
-  expenses = 'EXPENSES',
+  expenses = 'EXPENSE',
   income = 'INCOME',
 }

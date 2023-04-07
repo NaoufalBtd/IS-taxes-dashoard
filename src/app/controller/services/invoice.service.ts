@@ -24,11 +24,16 @@ export class InvoiceService {
   private _incomeCount$ = new Subject<InvoiceStats[]>();
   private _expensesCount$ = new Subject<InvoiceStats[]>();
   private _invoices$ = new BehaviorSubject<Invoice[]>([]);
+  public _selectedInvoice$: Subject<Invoice | null> = new Subject();
 
   constructor(private http: HttpClient) {}
 
   get invoices$() {
     return this._invoices$.asObservable();
+  }
+
+  get selectedInvoice$() {
+    return this._selectedInvoice$.asObservable();
   }
 
   get incomeCount$() {
@@ -83,6 +88,37 @@ export class InvoiceService {
     });
   }
 
+  getInvoiceByCode(code: string) {
+    return this._invoices.find((inv) => inv.code === code);
+  }
+
+  updateInvoice(invoice: Invoice) {
+    let url = '';
+    if (invoice.type === InvoiceType.income) {
+      url = `${this.incomeInvoiceBaseUrl}${invoice.id}`;
+    } else {
+      url = `${this.expensesInvoiceBaseUrl}${invoice.id}`;
+    }
+
+    this.http.put(url, invoice).subscribe((data) => {
+      const updatedInvoices = this._invoices.map((inv) => {
+        if (inv.id === invoice.id) {
+          return invoice;
+        }
+        return inv;
+      });
+      this._invoices$.next(updatedInvoices);
+    });
+  }
+
+  selectInvoice(invoiceCode: string) {
+    const invoice = this.getInvoiceByCode(invoiceCode);
+    this._selectedInvoice$.next(invoice || null);
+  }
+  resetSelectedInvoice() {
+    this._selectedInvoice$.next(null);
+  }
+
   getFormattedInvoices = (invoices: Invoice[], type: InvoiceType) => {
     return invoices.map((invoice) => {
       return {
@@ -108,7 +144,7 @@ export class InvoiceService {
           return data.map((d) => ({
             month: parseInt(d.month),
             year: parseInt(d.year),
-            sum: parseFloat(d.sum),
+            sum: parseFloat(d.sumTTC),
           }));
         }),
         tap((data) => {
@@ -133,7 +169,7 @@ export class InvoiceService {
           return data.map((d) => ({
             month: parseInt(d.month),
             year: parseInt(d.year),
-            sum: parseFloat(d.sum),
+            sum: parseFloat(d.sumTTC),
           }));
         }),
         tap((data) => {

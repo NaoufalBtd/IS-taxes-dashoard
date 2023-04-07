@@ -14,8 +14,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgChartsModule } from 'ng2-charts';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppComponent } from './app.component';
+import { DashboardLayoutComponent } from './shared/components/layouts/dashboard-layout/dashboard-layout.component';
+import { AddInvoiceComponent } from './shared/components/modals/add-invoice/add-invoice.component';
+import { EmployeeModalComponent } from './shared/components/modals/employee-modal/employee-modal.component';
+import { IrTaxModalComponent } from './shared/components/modals/ir-tax-modal/ir-tax-modal.component';
+import { TaxIsModalComponent } from './shared/components/modals/tax-is-modal/tax-is-modal.component';
 import { AuthInterceptor } from './shared/helpers/auth.interceptor';
-import { DashboardLayoutComponent } from './view/components/layouts/dashboard-layout/dashboard-layout.component';
 import { BannerComponent } from './view/components/modules/banner/banner.component';
 import { EmpOptionsMenuComponent } from './view/components/modules/emp-options-menu/emp-options-menu.component';
 import { EmpTaxesTableComponent } from './view/components/modules/emp-taxes-table/emp-taxes-table.component';
@@ -23,15 +27,12 @@ import { EmpsCardComponent } from './view/components/modules/emps-card/emps-card
 import { EmpsTableComponent } from './view/components/modules/emps-table/emps-table.component';
 import { ExpensesCardComponent } from './view/components/modules/expenses-card/expenses-card.component';
 import { IncomeCardComponent } from './view/components/modules/income-card/income-card.component';
+import { InvoiceOptionsMenuComponent } from './view/components/modules/invoice-options-menu/invoice-options-menu.component';
 import { InvoicesTableComponent } from './view/components/modules/invoices-table/invoices-table.component';
 import { IrTaxesListWidgetComponent } from './view/components/modules/ir-taxes-list-widget/ir-taxes-list-widget.component';
 import { IrTaxesWidgetsComponent } from './view/components/modules/ir-taxes-widgets/ir-taxes-widgets.component';
 import { LastTaxWidgetComponent } from './view/components/modules/last-tax-widget/last-tax-widget.component';
 import { LatestEmpWidgetComponent } from './view/components/modules/latest-emp-widget/latest-emp-widget.component';
-import { AddInvoiceComponent } from './view/components/modules/modals/add-invoice/add-invoice.component';
-import { EmployeeModalComponent } from './view/components/modules/modals/employee-modal/employee-modal.component';
-import { IrTaxModalComponent } from './view/components/modules/modals/ir-tax-modal/ir-tax-modal.component';
-import { TaxIsModalComponent } from './view/components/modules/modals/tax-is-modal/tax-is-modal.component';
 import { NavbarComponent } from './view/components/modules/navbar/navbar.component';
 import { NotificationWidgetComponent } from './view/components/modules/notification-widget/notification-widget.component';
 import { NotificationComponent } from './view/components/modules/notification/notification.component';
@@ -73,6 +74,7 @@ import { ProfileComponent } from './view/pages/profile/profile.component';
     EmpOptionsMenuComponent,
     IrTaxesListWidgetComponent,
     IrTaxModalComponent,
+    InvoiceOptionsMenuComponent,
   ],
   imports: [
     BrowserModule,

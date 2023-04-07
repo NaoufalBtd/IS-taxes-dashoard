@@ -31,6 +31,7 @@
         >
           Date
         </th>
+        <th class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
       </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
@@ -42,18 +43,25 @@
           <span class="badge" [ngClass]="{'badge' : true,'badge-success text-white': invoice.type === 'INCOME', 'badge-primary': invoice.type !== 'INCOME'}">{{invoice.type}}</span>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">{{invoice.montantHT}}</div>
+          <div class="text-sm text-gray-900">{{invoice.montantHT | currency: "MAD"}}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm text-gray-900">{{invoice.montantTTC}}</div>
+          <div class="text-sm text-gray-900">{{invoice.montantTTC | currency: "MAD"}}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">
           <div class="text-sm text-gray-900">{{invoice.dateFacture}}</div>
         </td>
+        <td class="px-6 py-4 whitespace-nowrap text-right text-md  dropdown dropdown-end ">
+            <label tabindex="0" class=""> <fa-icon [icon]="faEllipsisV" class="text-gray-400 btn btn-ghost px-4"></fa-icon></label>
+                  <app-invoice-options-menu [invoiceCode]="invoice.code"></app-invoice-options-menu>
+
+          </td>
+
       </tr>
 
       <!-- More rows... -->
     </tbody>
+
   </table>
   <!-- <nav
     class="flex items-center justify-between pt-4"
@@ -145,6 +153,7 @@
       </li>
     </ul>
   </nav> -->
+
 </div>
 
 <app-add-invoice/>
