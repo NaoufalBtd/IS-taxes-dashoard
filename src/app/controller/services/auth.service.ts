@@ -1,29 +1,31 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, lastValueFrom, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8036/api/v1/auth/login';
+  private baseUrl = 'http://localhost:8036/api/v1/auth/';
   private _token: string = '';
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   login(username: string, password: string) {
-    return this.http.post<any>(this.baseUrl, { username, password }).pipe(
-      tap((response) => {
-        console.log('here');
-        const token = response.token;
-        this.cookieService.set('jwt_token', token);
-      }),
-      catchError((err) => {
-        console.error(err);
-        return throwError('An error occurred while logging in.');
-      })
-    );
+    return this.http
+      .post<any>(`${this.baseUrl}login`, { username, password })
+      .pipe(
+        tap((response) => {
+          console.log('here');
+          const token = response.token;
+          this.cookieService.set('jwt_token', token);
+        }),
+        catchError((err) => {
+          console.error(err);
+          return throwError('An error occurred while logging in.');
+        })
+      );
   }
   getTokenFromCookies(headers: HttpHeaders) {
     const cookies = headers.getAll('Set-Cookie');
@@ -44,8 +46,21 @@ export class AuthService {
     this.cookieService.delete('jwt_token');
   }
 
-  isLoggedIn() {
-    console.log('is logged ind ' + this.cookieService.check('jwt_token'));
-    return this.cookieService.check('jwt_token');
+  async isLoggedIn() {
+    let flag = false;
+
+    if (this.cookieService.check('jwt_token')) {
+      try {
+        const res$ = await this.http.get(`${this.baseUrl}isLoggedIn`);
+        await lastValueFrom(res$);
+        flag = true;
+      } catch (err) {
+        console.error(err);
+        this.cookieService.delete('jwt_token');
+        flag = false;
+      }
+    }
+
+    return flag;
   }
 }

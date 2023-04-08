@@ -1,61 +1,87 @@
-<div class="card border p-4 h-full border-gray-50 shadow-md">
+<style>
+  .my-pagination ::ng-deep .ngx-pagination .current {
+    background: #8a83b2;
+    border-radius: 20px;
+  }
+  .my-pagination ::ng-deep .ngx-pagination a:hover {
+    border-radius: 20px;
+  }
+  .my-pagination ::ng-deep .ngx-pagination {
+    margin: auto;
+    text-align: center;
+  }
+  .my-pagination ::ng-deep .pagination-next {
+    display: none;
+  }
+  .my-pagination ::ng-deep .pagination-previous {
+    display: none;
+  }
+</style>
+<div class="card border p-4 h-fit border-gray-50 shadow-md">
   <div class="card-title"><span>Taxes To be Paid</span></div>
   <div class="p-2 h-full flex-col flex items-end justify-center">
-    <!-- <div class="flex flex-col items-center justify-center">
-      You do not have any taxes to be paid
-    </div> -->
-    <div class="carousel w-full">
-      <div id="item1" class="carousel-item block w-full">
-        <div class="flex flex-col border border-gray-100 p-3 rounded-2xl">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/10149/10149878.png"
-            class="w-14 h-14 block m-auto mb-3"
-            alt=""
-          />
-          <div class="flex">
-            <span class="w-1/2 font-bold">Id: </span>
-            <span>1</span>
-          </div>
-          <div class="flex">
-            <span class="w-1/2 font-bold">Amount: </span>
-            <span>1000</span>
-          </div>
-          <div class="flex">
-            <span class="w-1/2 font-bold">Due Date: </span>
-            <span>2021-12-12</span>
-          </div>
-          <div class="flex">
-            <span class="w-1/2 font-bold">Payment Status: </span>
-            <span>Not Paid</span>
-          </div>
-          <label for="taxeis-modal" class="btn btn-primary w-full mt-3"
-            >Pay Now</label
-          >
-        </div>
+    <div class="w-full">
+      <div
+        class="flex flex-col items-center justify-center"
+        *ngIf="isTaxesEmpty; else taxesAvailable"
+      >
+        You do not have any taxes to be paid
       </div>
-      <div id="item2" class="carousel-item w-full">
-        <div class="flex flex-col items-center justify-center">
-          You do not have any taxes to be paid
+      <ng-template #taxesAvailable>
+        <div
+          *ngFor="
+            let tax of isTaxes | paginate : { itemsPerPage: 1, currentPage: p }
+          "
+          id="item1"
+          class="block w-full mb-3"
+        >
+          <div class="flex flex-col border border-gray-100 p-3 rounded-2xl">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/10149/10149878.png"
+              class="w-14 h-14 block m-auto mb-3"
+              alt=""
+            />
+            <div class="flex">
+              <span>Id: </span>
+              <span class="w-1/2 font-semibold ml-1">{{ tax.id }}</span>
+            </div>
+            <!-- <div class="flex">
+              <span>Amount: </span>
+              <span class="w-1/2 font-bold">1000</span>
+            </div> -->
+            <div class="flex">
+              <span>Annee: </span>
+              <span class="w-1/2 font-semibold ml-1">{{ tax.annee }}</span>
+            </div>
+            <div class="flex">
+              <span>Trimestre: </span>
+              <span class="w-1/2 font-semibold ml-1">{{ tax.trimestre }}</span>
+            </div>
+            <div class="flex">
+              <span>Due Date: </span>
+              <span class="w-1/2 font-semibold ml-1">{{
+                tax.dateEcheance
+              }}</span>
+            </div>
+            <div class="flex">
+              <span>Payment Status: </span>
+              <span class="w-1/2 font-semibold ml-1">Not Paid</span>
+            </div>
+            <label
+              (click)="selectTax(tax.id)"
+              for="taxeis-modal"
+              class="btn btn-primary w-full mt-3"
+              >Pay Now</label
+            >
+          </div>
         </div>
-      </div>
-      <div id="item3" class="carousel-item w-full">
-        <div class="flex flex-col items-center justify-center">
-          You do not have any taxes to be paid
-        </div>
-      </div>
-      <div id="item4" class="carousel-item w-full">
-        <div class="flex flex-col items-center justify-center">
-          You do not have any taxes to be paid
-        </div>
-      </div>
+        <pagination-controls
+          class="my-pagination"
+          (pageChange)="p = $event"
+        ></pagination-controls>
+      </ng-template>
     </div>
     <div class="flex-1"></div>
-    <div class="flex justify-center w-full py-2 gap-2">
-      <a href="#item1" class="btn btn-xs">1</a>
-      <a href="#item2" class="btn btn-xs">2</a>
-      <a href="#item3" class="btn btn-xs">3</a>
-      <a href="#item4" class="btn btn-xs">4</a>
-    </div>
   </div>
 </div>
 

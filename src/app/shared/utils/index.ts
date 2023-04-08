@@ -47,6 +47,22 @@ export const getThisMonthSum = (data: InvoiceStats[]) => {
   return thisMonthSum ? thisMonthSum.sum : 0;
 };
 
+export const getDateRangeByYearAndTrimester = (
+  year: number,
+  trimester: number
+) => {
+  const startDate = moment()
+    .year(year)
+    .month(trimester * 3 - 3)
+    .startOf('month')
+    .format('YYYY-MM-DD');
+  const endDate = moment()
+    .year(year)
+    .month(trimester * 3 - 1)
+    .endOf('month')
+    .format('YYYY-MM-DD');
+  return { startDate, endDate };
+};
 // export const getChartData = (invoices: Invoice[]) => {
 //   const months = getLastSixMonths();
 //   const labels: string[] = [];

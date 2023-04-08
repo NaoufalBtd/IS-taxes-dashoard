@@ -59,11 +59,11 @@ export class InvoiceService {
     expensesUrl.searchParams.append('size', '2');
 
     const inv: Invoice[] = [];
-    this.fetchIncomes(incomesUrl, inv);
-    this.fetchExpenses(expensesUrl, inv);
+    this.fetchIncomes(incomesUrl, inv, true);
+    this.fetchExpenses(expensesUrl, inv, true);
   }
 
-  fetchIncomes(url: URL, inv: Invoice[]) {
+  fetchIncomes(url: URL, inv: Invoice[], commit = false) {
     this.http.get<Invoice[]>(url.href).subscribe((data) => {
       const formattedIncomes = this.getFormattedInvoices(
         data,
@@ -72,11 +72,11 @@ export class InvoiceService {
       inv.push(...formattedIncomes);
       const sortedInvoices = this.sortInvoicesByDate(inv);
 
-      this._invoices$.next(sortedInvoices);
+      commit && this._invoices$.next(sortedInvoices);
     });
   }
 
-  fetchExpenses(url: URL, inv: Invoice[]) {
+  fetchExpenses(url: URL, inv: Invoice[], commit = false) {
     this.http.get<Invoice[]>(url.href).subscribe((data) => {
       const formattedExpenses = this.getFormattedInvoices(
         data,
@@ -84,8 +84,38 @@ export class InvoiceService {
       );
       inv.push(...formattedExpenses);
       const sortedInvoices = this.sortInvoicesByDate(inv);
-      this._invoices$.next(sortedInvoices);
+      commit && this._invoices$.next(sortedInvoices);
     });
+  }
+
+  getInvoicesByDateRange(startDate: string, endDate: string) {
+    const incomesUrl = new URL(`${this.incomeInvoiceBaseUrl}`);
+    const expensesUrl = new URL(`${this.expensesInvoiceBaseUrl}`);
+
+    incomesUrl.searchParams.append('startDate', startDate);
+    incomesUrl.searchParams.append('endDate', endDate);
+    expensesUrl.searchParams.append('startDate', startDate);
+    expensesUrl.searchParams.append('endDate', endDate);
+
+    const inv: Invoice[] = [];
+    const inv$ = new Subject<Invoice[]>();
+    this.http.get<Invoice[]>(incomesUrl.href).subscribe((data) => {
+      const formattedIncomes = this.getFormattedInvoices(
+        data,
+        InvoiceType.income
+      );
+      inv.push(...formattedIncomes);
+      this.http.get<Invoice[]>(expensesUrl.href).subscribe((data) => {
+        const formattedExpenses = this.getFormattedInvoices(
+          data,
+          InvoiceType.expenses
+        );
+        inv.push(...formattedExpenses);
+        const sortedInvoices = this.sortInvoicesByDate(inv);
+        inv$.next(sortedInvoices);
+      });
+    });
+    return inv$.asObservable();
   }
 
   getInvoiceByCode(code: string) {
@@ -204,6 +234,23 @@ export class InvoiceService {
     } else {
       this.saveExpensesInvoice(invoice);
     }
+  }
+
+  deleteInvoice(invoiceCode: string) {
+    const invoice = this.getInvoiceByCode(invoiceCode);
+    if (!invoice) {
+      return;
+    }
+    const url =
+      invoice.type === InvoiceType.income
+        ? `${this.incomeInvoiceBaseUrl}${invoice.id}`
+        : `${this.expensesInvoiceBaseUrl}${invoice.id}`;
+    this.http.delete(url).subscribe(() => {
+      const newInvoices = this._invoices$.value.filter(
+        (inv) => inv.code !== invoice.code
+      );
+      this._invoices$.next(newInvoices);
+    });
   }
 
   // deleteInvoice(invoice: Invoice) {
