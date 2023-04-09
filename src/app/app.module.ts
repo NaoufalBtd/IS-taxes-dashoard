@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -80,6 +81,7 @@ import { ProfileComponent } from './view/pages/profile/profile.component';
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
+    BrowserAnimationsModule,
     FormsModule,
     NgChartsModule,
     CommonModule,

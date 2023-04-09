@@ -16,4 +16,8 @@ export class InvoiceOptionsMenuComponent implements OnInit {
   selectInvoice() {
     this.invoiceService.selectInvoice(this.invoiceCode);
   }
+
+  deleteInvoice() {
+    this.invoiceService.deleteInvoice(this.invoiceCode);
+  }
 }
