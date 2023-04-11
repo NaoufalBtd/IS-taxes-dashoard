@@ -5,6 +5,7 @@ import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.com
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 import { LoginComponent } from './view/pages/login/login.component';
 import { ProfileComponent } from './view/pages/profile/profile.component';
+import { TaxesComponent } from './view/pages/taxes/taxes.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
   {
     path: 'employee',
     component: DashboardIrComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'taxes',
+    component: TaxesComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -17,7 +17,9 @@ export class EmployeeService {
   private _employees$ = new BehaviorSubject<Employee[]>([]);
   private _undeclaredEmployees$ = new BehaviorSubject<UndeclaredEmployee[]>([]);
   private _employeeCount$ = new BehaviorSubject<number>(0);
+  private _selectedEmployee$ = new Subject<Employee | null>();
   public searchTerms$ = new Subject<string>();
+  public modalOpen$ = new Subject<boolean>();
 
   constructor(private http: HttpClient) {}
 
@@ -112,9 +114,20 @@ export class EmployeeService {
       .subscribe();
   }
 
+  getEmployeeById(id: string) {
+    return this._employees$.value.find((emp) => emp.id == id);
+  }
+
+  selectEmployee(id: string) {
+    const employee = this.getEmployeeById(id);
+    if (employee) {
+      this._selectedEmployee$.next({ ...employee });
+    }
+  }
+
+  //todo: in the update i get an error of cors
   updateEmployee(employee: Employee): Observable<Employee> {
-    const url = `${this.baseUrl}/${employee.id}`;
-    return this.http.put<Employee>(url, employee, httpOptions).pipe(
+    return this.http.put<Employee>(this.baseUrl, employee, httpOptions).pipe(
       tap(() => {
         this.fetchEmployees(); // refetch employees after updating an employee
       }),
@@ -139,6 +152,10 @@ export class EmployeeService {
 
   get undeclaredEmployees$() {
     return this._undeclaredEmployees$.asObservable();
+  }
+
+  get selectedEmployee$() {
+    return this._selectedEmployee$.asObservable();
   }
 
   set employee(employee: Employee) {}

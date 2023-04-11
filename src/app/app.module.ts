@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,8 +31,11 @@ import { ExpensesCardComponent } from './view/components/modules/expenses-card/e
 import { IncomeCardComponent } from './view/components/modules/income-card/income-card.component';
 import { InvoiceOptionsMenuComponent } from './view/components/modules/invoice-options-menu/invoice-options-menu.component';
 import { InvoicesTableComponent } from './view/components/modules/invoices-table/invoices-table.component';
+import { IrChartComponent } from './view/components/modules/ir-chart/ir-chart.component';
+import { IrTableComponent } from './view/components/modules/ir-table/ir-table.component';
 import { IrTaxesListWidgetComponent } from './view/components/modules/ir-taxes-list-widget/ir-taxes-list-widget.component';
 import { IrTaxesWidgetsComponent } from './view/components/modules/ir-taxes-widgets/ir-taxes-widgets.component';
+import { IsTableComponent } from './view/components/modules/is-table/is-table.component';
 import { LastTaxWidgetComponent } from './view/components/modules/last-tax-widget/last-tax-widget.component';
 import { LatestEmpWidgetComponent } from './view/components/modules/latest-emp-widget/latest-emp-widget.component';
 import { NavbarComponent } from './view/components/modules/navbar/navbar.component';
@@ -44,6 +48,7 @@ import { DashboardIrComponent } from './view/pages/dashboard-ir/dashboard-ir.com
 import { DashboardIsComponent } from './view/pages/dashboard-is/dashboard-is.component';
 import { LoginComponent } from './view/pages/login/login.component';
 import { ProfileComponent } from './view/pages/profile/profile.component';
+import { TaxesComponent } from './view/pages/taxes/taxes.component';
 
 @NgModule({
   declarations: [
@@ -76,12 +81,17 @@ import { ProfileComponent } from './view/pages/profile/profile.component';
     IrTaxesListWidgetComponent,
     IrTaxModalComponent,
     InvoiceOptionsMenuComponent,
+    IrTableComponent,
+    TaxesComponent,
+    IsTableComponent,
+    IrChartComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     FormsModule,
     NgChartsModule,
     CommonModule,

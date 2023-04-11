@@ -15,6 +15,10 @@ export class LatestEmpWidgetComponent implements OnInit {
   constructor(private empService: EmployeeService) {}
 
   ngOnInit() {
+    this.empService.fetchEmployees();
+    this.empService.employees$.subscribe((emp) => {
+      this._employees = emp;
+    });
     // this.empService.getEmployees(3, 3).subscribe((emp) => {
     //   this._employees = emp;
     // });

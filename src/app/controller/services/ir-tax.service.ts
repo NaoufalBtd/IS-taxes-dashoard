@@ -11,14 +11,12 @@ import { EmployeeService } from './employee.service';
 export class IrTaxService {
   private baseUrl = 'http://localhost:8036/api/v1/TaxeIR/';
 
-  private irTaxesSubject = new BehaviorSubject<IrTax[]>([]);
-
-  private _irTaxes$ = this.irTaxesSubject.asObservable();
+  private _irTaxes$ = new BehaviorSubject<IrTax[]>([]);
 
   constructor(private http: HttpClient, private empsService: EmployeeService) {}
 
   public get irTaxes$() {
-    return this._irTaxes$;
+    return this._irTaxes$.asObservable();
   }
 
   public fetchIrTaxes(page?: number, size?: number) {
@@ -31,7 +29,7 @@ export class IrTaxService {
       .pipe(
         tap((taxes: any[]) => {
           const irTaxes = this.formatIrTaxes(taxes);
-          this.irTaxesSubject.next(irTaxes);
+          this._irTaxes$.next(irTaxes);
         }),
         catchError((err) => {
           console.error(err);

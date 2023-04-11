@@ -202,8 +202,12 @@
     </div>
     <!-- Action Button -->
     <div class="modal-action">
-      <label for="taxeis-modal" class="btn btn-outline">Cancel</label>
-      <label for="taxeis-modal" class="btn btn-primary">Declare!</label>
+      <label for="taxeis-modal" class="btn btn-outline" (click)="clear()"
+        >Cancel</label
+      >
+      <label for="taxeis-modal" class="btn btn-primary" (click)="declareTax()"
+        >Declare!</label
+      >
     </div>
   </div>
 </div>

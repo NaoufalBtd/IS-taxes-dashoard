@@ -16,9 +16,10 @@ export class IsTaxService {
 
   constructor(private http: HttpClient) {}
 
-  fetchTaxesIS(page?: number) {
+  fetchTaxesIS(page?: number, size: number = 5) {
     const url = new URL(this.baseUrl);
-    page && url.searchParams.append('page', page.toString());
+    page && url.searchParams.append('page', (page - 1).toString());
+    url.searchParams.append('size', size.toString());
 
     this.http.get<IsTax[]>(url.toString()).subscribe({
       next: (taxesIS) => {
@@ -58,6 +59,10 @@ export class IsTaxService {
       (tax) => tax.id === id
     );
     this._selectedTax$.next(selectedTax || null);
+  }
+
+  get taxesIS$() {
+    return this._taxesIS$.asObservable();
   }
 
   get undeclaredTaxes$() {

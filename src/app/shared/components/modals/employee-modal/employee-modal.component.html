@@ -1,5 +1,5 @@
-<input type="checkbox" id="emp-modal" class="modal-toggle" />
-<div class="modal">
+<!-- <input type="checkbox" id="emp-modal" class="modal-toggle" /> -->
+<div [ngClass]="{ 'modal-open': isOpen }" class="modal">
   <div class="modal-box">
     <h3 class="font-bold text-lg mb-3">Add Employee</h3>
     <!-- <p class="text-sm mb-3">Add a new employee to your account.</p> -->
@@ -69,14 +69,17 @@
         />
       </div>
       <div class="modal-action">
-        <label for="emp-modal" class="btn btn-outline">Cancel</label>
-        <button
-          [ngClass]="{ loading: saving }"
-          class="btn"
-          [disabled]="!isFilled"
-        >
-          <label for="emp-modal" (click)="saveEmployee()">Save</label>
-        </button>
+        <button (click)="close()" class="btn btn-outline">Cancel</button>
+        <label for="emp-modal">
+          <button
+            [ngClass]="{ loading: saving }"
+            class="btn"
+            (click)="saveEmployee()"
+            [disabled]="!inputsFilled"
+          >
+            Save
+          </button>
+        </label>
       </div>
     </form>
   </div>

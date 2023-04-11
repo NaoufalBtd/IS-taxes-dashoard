@@ -15,13 +15,14 @@ export class TaxIsModalComponent implements OnInit {
   // @Input private
   private _invoices: Invoice[] = [];
   public invoice: Invoice = new Invoice();
-  public isItem: IsItem = new IsItem();
+  public isItem!: IsItem;
   constructor(
     private invoiceService: InvoiceService,
     private isTaxService: IsTaxService
   ) {}
 
   ngOnInit() {
+    this.isItem = new IsItem();
     this.isTaxService.selectedTax$.subscribe((tax) => {
       if (!tax) return;
       this.isItem.taxeIS = tax;
@@ -43,14 +44,14 @@ export class TaxIsModalComponent implements OnInit {
           this.isItem.facturePerdus = expenseInvoices;
         });
     });
-    // this._invoices = this.invoiceService.invoices;
   }
+
   saveInvoice() {
     console.log('clicked');
     this.invoiceService.addInvoice({ ...this.invoice });
   }
 
-  declareTaxe() {
+  declareTax() {
     this.isTaxService.declareIsTax(this.isItem);
   }
 
