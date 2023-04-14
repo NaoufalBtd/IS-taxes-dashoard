@@ -26,21 +26,14 @@
     </div>
     <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
       <input
-        type="number"
+        type="text"
+        pattern="[0-9]*"
         placeholder="Montant HT"
         [(ngModel)]="invoice.montantHT"
         class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
       />
     </div>
-    <!-- Add age and salary inputs -->
-    <div class="md:flex gap-2 items-center justify-between mb-2 xs:w-full">
-      <input
-        type="number"
-        placeholder="Montant TTC"
-        [(ngModel)]="invoice.montantTTC"
-        class="input input-bordered w-full md:mb-auto mb-2 md:max-w-xs block mx-auto"
-      />
-    </div>
+
     <div class="modal-action">
       <label for="invoice-modal" class="btn btn-outline">Cancel</label>
       <label for="invoice-modal" class="btn" (click)="saveInvoice()"

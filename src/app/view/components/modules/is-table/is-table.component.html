@@ -33,7 +33,7 @@
           "
         >
           <th>#IRV-{{ tax.id }}</th>
-          <td>{{ tax.dateEcheance }}</td>
+          <td>{{ tax.dateEcheance | date }}</td>
           <td>{{ tax.datePaiement }}</td>
           <td>{{ tax.resultatAvantImpot | currency : "MAD" }}</td>
           <td>

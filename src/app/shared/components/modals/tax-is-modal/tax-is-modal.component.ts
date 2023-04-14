@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from 'src/app/controller/models/invoice.model';
-import { IsItem } from 'src/app/controller/models/isItem.model';
+import { IsTax } from 'src/app/controller/models/isTax.model';
 import { InvoiceService } from 'src/app/controller/services/invoice.service';
 import { IsTaxService } from 'src/app/controller/services/is-tax.service';
 import { InvoiceType } from 'src/app/shared/types';
@@ -15,20 +15,19 @@ export class TaxIsModalComponent implements OnInit {
   // @Input private
   private _invoices: Invoice[] = [];
   public invoice: Invoice = new Invoice();
-  public isItem!: IsItem;
+  public tax!: IsTax;
   constructor(
     private invoiceService: InvoiceService,
     private isTaxService: IsTaxService
   ) {}
 
   ngOnInit() {
-    this.isItem = new IsItem();
-    this.isTaxService.selectedTax$.subscribe((tax) => {
-      if (!tax) return;
-      this.isItem.taxeIS = tax;
+    this.isTaxService.selectedTax$.subscribe((t) => {
+      if (!t) return;
+      this.tax = t;
       const { startDate, endDate } = getDateRangeByYearAndTrimester(
-        tax?.annee,
-        tax?.trimestre
+        t?.annee,
+        t?.trimestre
       );
       this.invoiceService
         .getInvoicesByDateRange(startDate, endDate)
@@ -40,8 +39,8 @@ export class TaxIsModalComponent implements OnInit {
           const expenseInvoices = invoices.filter(
             (inv) => inv.type === InvoiceType.expenses
           );
-          this.isItem.factureGagnes = incomeInvoices;
-          this.isItem.facturePerdus = expenseInvoices;
+          this.tax.factureGagnes = incomeInvoices;
+          this.tax.facturePerdus = expenseInvoices;
         });
     });
   }
@@ -52,11 +51,17 @@ export class TaxIsModalComponent implements OnInit {
   }
 
   declareTax() {
-    this.isTaxService.declareIsTax(this.isItem);
+    this.isTaxService.declareIsTax(this.tax);
   }
 
   deleteInvoice(invoiceCode: string) {
-    this.invoiceService.deleteInvoice(invoiceCode);
+    //todo: implement delete from invoice
+    this._invoices = this._invoices.filter((inv) => inv.code !== invoiceCode);
+    // this.invoiceService.deleteInvoice(invoiceCode);
+  }
+
+  editInvoice(invoice: Invoice) {
+    this.invoiceService._selectedInvoice$.next({ ...invoice });
   }
 
   clear() {

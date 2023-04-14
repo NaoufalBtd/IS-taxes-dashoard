@@ -113,6 +113,7 @@ export class InvoiceService {
         inv.push(...formattedExpenses);
         const sortedInvoices = this.sortInvoicesByDate(inv);
         inv$.next(sortedInvoices);
+        // this._invoices$.next(this._invoices.concat(inv));
       });
     });
     return inv$.asObservable();
@@ -153,6 +154,8 @@ export class InvoiceService {
     return invoices.map((invoice) => {
       return {
         ...invoice,
+        montantHT: parseFloat(invoice.montantHT.toFixed(2)),
+        montantTTC: parseFloat(invoice.montantTTC.toFixed(2)),
         dateFacture: moment(invoice.dateFacture).format('YYYY-MM-DD'),
         type,
       };
@@ -246,10 +249,11 @@ export class InvoiceService {
         ? `${this.incomeInvoiceBaseUrl}${invoice.id}`
         : `${this.expensesInvoiceBaseUrl}${invoice.id}`;
     this.http.delete(url).subscribe(() => {
-      const newInvoices = this._invoices$.value.filter(
-        (inv) => inv.code !== invoice.code
-      );
-      this._invoices$.next(newInvoices);
+      this.fetchInvoices();
+      // const newInvoices = this._invoices$.value.filter(
+      //   (inv) => inv.code !== invoice.code
+      // );
+      // this._invoices$.next(newInvoices);
     });
   }
 

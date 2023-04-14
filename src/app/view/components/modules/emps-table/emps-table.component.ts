@@ -34,6 +34,11 @@ export class EmpsTableComponent implements OnInit {
     this.employeeService.searchTerms$.next(this._searchTerm);
   }
 
+  openModal() {
+    console.log('clicked');
+    this.employeeService.modalOpen$.next(true);
+  }
+
   get employees$(): Observable<Employee[]> {
     return this._employees$;
   }

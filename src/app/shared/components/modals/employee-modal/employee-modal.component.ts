@@ -18,7 +18,6 @@ export class EmployeeModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.empService.modalOpen$.subscribe((isOpen) => {
-      console.log(isOpen);
       this.isOpen = isOpen;
     });
     this.empService.selectedEmployee$.subscribe((emp) => {

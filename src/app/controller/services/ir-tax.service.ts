@@ -60,6 +60,8 @@ export class IrTaxService {
         date: moment(tax.annee + '-' + tax.mois, 'YYYY-MM').format('MMM, YYYY'),
         declarationDate: tax.dateDeclaration,
         amount: tax.montantIR,
+        year: tax.annee,
+        month: tax.mois,
       };
     });
   }

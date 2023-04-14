@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { catchError, lastValueFrom, tap, throwError } from 'rxjs';
 
@@ -10,7 +11,11 @@ export class AuthService {
   private baseUrl = 'http://localhost:8036/api/v1/auth/';
   private _token: string = '';
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService,
+    private router: Router
+  ) {}
 
   login(username: string, password: string) {
     return this.http
@@ -44,6 +49,8 @@ export class AuthService {
 
   logout() {
     this.cookieService.delete('jwt_token');
+    console.log('clicked');
+    this.router.navigate(['/login']);
   }
 
   async isLoggedIn() {

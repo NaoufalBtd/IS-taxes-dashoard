@@ -12,7 +12,7 @@ export class ExpensesCardComponent implements OnInit {
   public expense = 0;
 
   ngOnInit(): void {
-    this.invoiceService.incomeCount$.subscribe((data) => {
+    this.invoiceService.expensesCount$.subscribe((data) => {
       this.expense = getThisMonthSum(data);
     });
   }

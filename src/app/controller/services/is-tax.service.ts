@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IsItem } from '../models/isItem.model';
 import { IsTax } from '../models/isTax.model';
 
 @Injectable({
@@ -43,8 +42,8 @@ export class IsTaxService {
     });
   }
 
-  declareIsTax(isItem: IsItem) {
-    this.http.post(this.baseUrl, isItem).subscribe({
+  declareIsTax(tax: IsTax) {
+    this.http.post(this.baseUrl, tax).subscribe({
       next: () => {
         this.fetchUndeclaredTaxes();
       },

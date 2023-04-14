@@ -12,6 +12,7 @@ import { getChartData } from 'src/app/shared/utils';
 export class TurnoverChartComponent implements OnInit {
   incomeInvoice: Invoice[] = [];
   incomeData: number[] = [];
+  expenseData: number[] = [];
   chartLabels: string[] = [];
   isLoaded = false;
 
@@ -21,8 +22,14 @@ export class TurnoverChartComponent implements OnInit {
     this.invoiceService.incomeCount$.subscribe((data) => {
       const chartData = getChartData(data);
       this.incomeData = chartData.data;
-      this.incomeData.push(5000);
       this.chartLabels = chartData.labels;
+      this.chartData = this.generateChartData();
+    });
+
+    this.invoiceService.fetchExpensesStatistics();
+    this.invoiceService.expensesCount$.subscribe((data) => {
+      const chartData = getChartData(data);
+      this.expenseData = chartData.data;
       this.chartData = this.generateChartData();
     });
   }
@@ -138,7 +145,7 @@ export class TurnoverChartComponent implements OnInit {
           backgroundColor: 'rgba(13, 148, 136, 0.1)',
         },
         {
-          data: [2800, 4800, 400, 1900, 8600, 2700, 900],
+          data: this.expenseData,
           label: 'Expenses',
           fill: true,
           tension: 0.5,

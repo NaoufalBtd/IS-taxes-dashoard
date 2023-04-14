@@ -60,12 +60,15 @@
             <div class="flex">
               <span>Due Date: </span>
               <span class="w-1/2 font-semibold ml-1">{{
-                tax.dateEcheance
+                tax.dateEcheance | date : "MM/dd/yy"
               }}</span>
             </div>
-            <div class="flex">
+            <div class="flex items-center">
               <span>Payment Status: </span>
-              <span class="w-1/2 font-semibold ml-1">Not Paid</span>
+              <span
+                class="w-1/2 font-semibold ml-1 badge badge-error text-white"
+                >Not Paid</span
+              >
             </div>
             <label
               (click)="selectTax(tax.id)"

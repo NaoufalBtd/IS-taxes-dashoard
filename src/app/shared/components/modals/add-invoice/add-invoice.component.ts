@@ -28,5 +28,10 @@ export class AddInvoiceComponent implements OnInit {
     } else {
       this.invoiceService.addInvoice(this.invoice);
     }
+    this.clearInvoice();
+  }
+
+  clearInvoice() {
+    this.invoice = new Invoice();
   }
 }
